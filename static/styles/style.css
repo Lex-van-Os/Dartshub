@@ -35,9 +35,6 @@ body {font-family: Verdana, sans-serif;}
     margin: auto;
     padding: 10px 0;
     background-color: #ddd;
-    float: right;
-    margin-right: 5%;
-    width: 61%;
 }
 
 .weekdays li {
@@ -51,9 +48,6 @@ body {font-family: Verdana, sans-serif;}
     padding: 10px 0;
     background: #eee;
     margin: auto;
-    float: right;
-    margin-right: 5%;
-    width: 61%;
 }
 
 .days li {
@@ -71,11 +65,6 @@ body {font-family: Verdana, sans-serif;}
     padding: 5px;
     background: #0030ce;
     color: white !important
-}
-
-.eventList {
-  float: left;
-  margin-left: 5%;
 }
 
 .eventList .date {
