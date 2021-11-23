@@ -1,5 +1,5 @@
-from flask import Flask
-from flask.templating import render_template
+from flask import Flask, render_template
+
 
 app = Flask(__name__)
 
@@ -10,3 +10,7 @@ def index():
 @app.route("/agenda")
 def agenda():
     return render_template("agenda.html")
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
