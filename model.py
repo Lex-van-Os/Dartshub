@@ -1,17 +1,7 @@
-import os
-
-from flask import Flask
+from app import app
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
-
-BASE_DIR = os.path.dirname(os.path.abspath(__name__))
-
-app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(BASE_DIR, 'dartsbond.db')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)
 
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
