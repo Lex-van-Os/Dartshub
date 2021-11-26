@@ -1,5 +1,6 @@
 from app import app
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 db = SQLAlchemy(app)
 
@@ -21,11 +22,12 @@ class Event(db.Model):
     desc = db.Column(db.String(248), unique=False, nullable=True)
     age = db.Column(db.Integer, unique=False, nullable=False)
     
-    def __init__(self, name, time, desc, age):
+    def __init__(self, name, date, time, desc, age):
         self.name = name
+        self.date = date
         self.time = time
         self.desc = desc
         self.age = age
     
     def __repr__(self):
-        return f"Event('{self.name}', '{self.time}', '{self.desc}', '{self.age}')"
+        return f"Event('{self.name}', '{self.date}', '{self.time}', '{self.desc}', '{self.age}')"
