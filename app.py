@@ -24,8 +24,17 @@ def agenda():
     endDate = calendar.monthrange(currentDate.year, currentDate.month)[1]
     events = db.session.query(Event).filter(Event.date >= currentDate, Event.date <= endDate).all()
     
-    print(events)
-    return render_template("agenda.html")
+    mockUpData = {
+        "id": 1,
+        "name": "test",
+        "date": "28-11-2021",
+        "time": "21:00",
+        "desc": "test desc",
+        "age": 18
+    }
+    
+    # Use {{ eventData }} to acces event data in the front-end.
+    return render_template("agenda.html", eventData=mockUpData)
 
 if __name__ == "__main__":
     app.run(debug=True)
