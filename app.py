@@ -1,9 +1,11 @@
-import os
+import os, json
 
 from flask import Flask, render_template
 from flask_migrate import Migrate
 from datetime import datetime
-import calendar
+
+import sqlalchemy
+from sqlalchemy.exc import SQLAlchemyError
 
 BASE_DIR = os.path.dirname(os.path.abspath(__name__))
 
@@ -20,21 +22,21 @@ def index():
 
 @app.route("/agenda")
 def agenda():
+    # Gets current date
     currentDate = datetime.today()
-    endDate = calendar.monthrange(currentDate.year, currentDate.month)[1]
-    events = db.session.query(Event).filter(Event.date >= currentDate, Event.date <= endDate).all()
     
-    mockUpData = {
-        "id": 1,
-        "name": "test",
-        "date": "28-11-2021",
-        "time": "21:00",
-        "desc": "test desc",
-        "age": 18
-    }
-    
-    # Use {{ eventData }} to acces event data in the front-end.
-    return render_template("agenda.html", eventData=mockUpData)
+    # Get events with try and except
+    try:
+        # Get events
+        events = db.session.query(Event).filter(Event.date >= currentDate).all()
+    except SQLAlchemyError as e: # Error
+        error = str(e.__dict__['orig'])
+        return error
+    finally:
+        print(events)    
+        
+        # Use {{ eventData }} to acces event data in the front-end.
+        return render_template("agenda.html", eventData=events)
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -17,8 +17,8 @@ For help: flask db --help
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=False, nullable=False)
-    date = db.Column(db.DateTime, unique=False, nullable=False)
-    time = db.Column(db.Time, unique=False, nullable=False)
+    date = db.Column(db.Text, unique=False, nullable=False)
+    time = db.Column(db.Text, unique=False, nullable=False)
     desc = db.Column(db.String(248), unique=False, nullable=True)
     age = db.Column(db.Integer, unique=False, nullable=False)
     
@@ -30,4 +30,12 @@ class Event(db.Model):
         self.age = age
     
     def __repr__(self):
-        return f"Event('{self.name}', '{self.date}', '{self.time}', '{self.desc}', '{self.age}')"
+        events = {
+            "id" : self.id,
+            "name" : self.name,
+            "date" : self.date,
+            "time" : self.time,
+            "desc" : self.desc,
+            "age" : self.age
+        }
+        return str(events)
