@@ -7,7 +7,10 @@ __pycache__/
 *.so
 
 # Distribution / packaging
+/migrations
 .migrations
+.migrations/
+migrations/
 .vscode
 .Python
 build/
