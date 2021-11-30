@@ -1,6 +1,11 @@
 {% extends "layout/base.html.jinja" %}
 
 {% block content %}
+
+{% for event in eventData %}
+  {{ event.name }}
+{% endfor %}
+
 <h1>Dartsbond Almere Agenda</h1>
 
 <ul class="eventList">
@@ -65,4 +70,3 @@
 </div>
 
 {% endblock %}
-
