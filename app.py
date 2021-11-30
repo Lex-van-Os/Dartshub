@@ -37,6 +37,8 @@ Migrate(app, db)
 @app.route("/home")
 def index():
 
+
+@app.route("/agenda")
     return render_template('index.html')
 
 @app.route("/agenda", methods=['GET'])
@@ -59,6 +61,15 @@ def agenda():
         # Use {{ eventData }} to acces event data in the front-end.
         return render_template("agenda.html.jinja",  eventData=events)
 
+
+@app.route("/form")
+def form():
+    return render_template("form.html")
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
+    
 # run python/flask app
 if __name__ == "__main__":
 
