@@ -1,4 +1,5 @@
 # imports for atm
+from model import Event
 from flask import Flask, render_template
 from flask_migrate import Migrate
 from datetime import datetime
@@ -18,7 +19,8 @@ app.config['SECRET_KEY'] = 'LaterDitVeranderenIVMsecurity'
 app.config['FLASK_ENV'] = 'development'
 
 # configure app to locate the resources of sqlite and his database
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(BASE_DIR, 'database.sqlite')
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + \
+    os.path.join(BASE_DIR, 'database.sqlite')
 
 # track db changes, can be turned on but it's resources intensive... so for now please let it be False
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -27,38 +29,46 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # imports event form model
-from model import Event
 
 # with migrate we can upgrade our tables and models for this there are several instructions for it.
 Migrate(app, db)
 
 # Routes of the webpages
+
+
 @app.route("/")
 @app.route("/home")
 def index():
 
     return render_template('index.html')
 
+
+@app.route("/test")
+def test():
+    return render_template("test.html.jinja")
+
+
 @app.route("/agenda")
 def agenda():
     # Gets current date
     currentDate = datetime.today()
-    
+
     # Get events with try and except
     try:
         # Get events
-        events = db.session.query(Event).filter(Event.date >= currentDate).all()
-    except SQLAlchemyError as e: # Error
+        events = db.session.query(Event).filter(
+            Event.date >= currentDate).all()
+    except SQLAlchemyError as e:  # Error
         error = str(e.__dict__['orig'])
         return error
     finally:
-        print(events)    
-        
+        print(events)
+
         # Use {{ eventData }} to acces event data in the front-end.
         return events
 
-# run python/flask app
-if __name__ == "__main__":
 
-    # always true because so you can debug the application much easier... trust me
+if __name__ == '__main__':
+    app.jinja_env.auto_reload = True
+    app.config['TEMPLATES_AUTO_RELOAD'] = True
     app.run(debug=True)
