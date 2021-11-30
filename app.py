@@ -1,7 +1,7 @@
 # imports for atm
 from flask import Flask, render_template
 from flask_migrate import Migrate
-from datetime import datetime
+from datetime import datetime, date
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import SQLAlchemyError
 import os
@@ -41,8 +41,10 @@ def index():
 
 @app.route("/agenda", methods=['GET'])
 def agenda():
+    
     # Gets current date
-    currentDate = datetime.today()
+    date = datetime.now().date()
+    currentDate = f"{date.day}-{date.month}-{date.year}"
     
     # Get events with try and except
     try:
