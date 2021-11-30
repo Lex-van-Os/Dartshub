@@ -28,6 +28,7 @@ db = SQLAlchemy(app)
 
 # imports event form model
 from model import Event
+
 # with migrate we can upgrade our tables and models for this there are several instructions for it.
 Migrate(app, db)
 
@@ -35,6 +36,7 @@ Migrate(app, db)
 @app.route("/")
 @app.route("/home")
 def index():
+
     return render_template('index.html')
 
 @app.route("/agenda")
@@ -54,5 +56,9 @@ def agenda():
         
         # Use {{ eventData }} to acces event data in the front-end.
         return events
+
+# run python/flask app
 if __name__ == "__main__":
+
+    # always true because so you can debug the application much easier... trust me
     app.run(debug=True)
