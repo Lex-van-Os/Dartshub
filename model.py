@@ -1,8 +1,8 @@
-from app import app
+from app import db
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
-db = SQLAlchemy(app)
+
 
 """
 How to add new migrations? Via Terminal
