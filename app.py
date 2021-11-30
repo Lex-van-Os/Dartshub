@@ -39,7 +39,7 @@ def index():
 
     return render_template('index.html')
 
-@app.route("/agenda")
+@app.route("/agenda", methods=['GET'])
 def agenda():
     # Gets current date
     currentDate = datetime.today()
@@ -47,15 +47,15 @@ def agenda():
     # Get events with try and except
     try:
         # Get events
-        events = db.session.query(Event).filter(Event.date >= currentDate).all()
+        events = Event.query.filter(Event.date <= currentDate).all()
     except SQLAlchemyError as e: # Error
         error = str(e.__dict__['orig'])
         return error
     finally:
-        print(events)    
+        print(events)   
         
         # Use {{ eventData }} to acces event data in the front-end.
-        return events
+        return render_template("agenda.html.jinja",  eventData=events)
 
 # run python/flask app
 if __name__ == "__main__":
