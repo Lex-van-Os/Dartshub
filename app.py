@@ -34,13 +34,14 @@ from model import Event
 Migrate(app, db)
 
 # Routes of the webpages
-@app.route("/")
-@app.route("/home")
-def index():
+# The code below produces errors when starting the project. Commented on 1-12-2021 17:51
+# @app.route("/")
+# @app.route("/home")
+# def index():
 
 
-@app.route("/agenda")
-    return render_template('index.html')
+# @app.route("/agenda")
+#     return render_template('index.html')
 
 # Function for retrieving events for database. Refactored, seeing how this may be used in multiple other functions
 def get_events_from_db():
