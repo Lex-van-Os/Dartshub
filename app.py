@@ -1,9 +1,10 @@
 # imports for atm
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify, request
 from flask_migrate import Migrate
 from datetime import datetime, date
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import SQLAlchemyError
+from calendar import monthrange
 import os
 
 # home dir app.py, this var is created to make a basedir for the sqlite file in this files contains our db..
@@ -33,33 +34,59 @@ from model import Event
 Migrate(app, db)
 
 # Routes of the webpages
-@app.route("/")
-@app.route("/home")
-def index():
+# The code below produces errors when starting the project. Commented on 1-12-2021 17:51
+# @app.route("/")
+# @app.route("/home")
+# def index():
 
 
-@app.route("/agenda")
-    return render_template('index.html')
+# @app.route("/agenda")
+#     return render_template('index.html')
 
-@app.route("/agenda", methods=['GET'])
-def agenda():
-    
+# Function for retrieving events for database. Refactored, seeing how this may be used in multiple other functions
+def get_events_from_db():
+       
     # Gets current date
-    date = datetime.now().date()
-    currentDate = f"{date.day}-{date.month}-{date.year}"
+    currentDate = datetime.now().date()
+    currentDateEu = f"{currentDate.day}-{currentDate.month}-{currentDate.year}"
     
     # Get events with try and except
     try:
         # Get events
-        events = Event.query.filter(Event.date <= currentDate).all()
+        events = Event.query.filter(Event.date <= currentDateEu).all()
     except SQLAlchemyError as e: # Error
         error = str(e.__dict__['orig'])
         return error
-    finally:
-        print(events)   
+
+    else:
+        return events
+
+
+# Function for retrieving events through a request
+@app.route("/get_events", methods=['GET'])
+def get_events():
+    
+    # Events are retrieved and are then converted to a json format, using the model serialize property, by looping through all fields
+    events = get_events_from_db()
+    return jsonify([field.serialize for field in events])
+
+
+# Function for loading the agenda page with the needed data
+@app.route("/agenda", methods=['GET', 'POST'])
+def agenda():
+    now = datetime.now()
+
+    # Dictionary of returned data, so that multiple pieces of data can be returned to a page
+    # This context is WIP and might be discarded when agenda logic is completed through JQuery
+    context = {
+        'eventData': get_events_from_db(),
+        'days': monthrange(now.year, now.month)[1], # Get all days of current month, for displaying
+        'day_int': 1,
+    }
         
-        # Use {{ eventData }} to acces event data in the front-end.
-        return render_template("agenda.html.jinja",  eventData=events)
+    # Use {{ context[{name of context item}] }} to acces context data in the front-end.
+    return render_template("agenda.html.jinja",  context=context)
+
 
 
 @app.route("/form")
