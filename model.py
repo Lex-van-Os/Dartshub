@@ -36,3 +36,16 @@ class Event(db.Model):
         "age" : self.age
         }
         return str(events)
+    
+    # Property for serialising data. This is needed to convert a SQL Alchemy query result to JSON
+    # This property can later be refactored to its own class, this way we don't have to write a property for each model
+    @property
+    def serialize(self):
+        return {
+        "id" : self.id,
+        "name" : self.name,
+        "date" : self.date,
+        "time" : self.time,
+        "desc" : self.desc,
+        "age" : self.age
+        }
