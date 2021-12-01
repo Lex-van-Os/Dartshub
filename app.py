@@ -38,6 +38,8 @@ Migrate(app, db)
 @app.route("/home")
 def index():
 
+
+@app.route("/agenda")
     return render_template('index.html')
 
 # Function for retrieving events for database. Refactored, seeing how this may be used in multiple other functions
@@ -85,6 +87,15 @@ def agenda():
     return render_template("agenda.html.jinja",  context=context)
 
 
+
+@app.route("/form")
+def form():
+    return render_template("form.html")
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
+    
 # run python/flask app
 if __name__ == "__main__":
 
