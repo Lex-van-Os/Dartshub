@@ -1,6 +1,7 @@
 {% extends "layout/base.html.jinja" %}
 
 {% block content %}
+
 <h1>Dartsbond Almere Agenda</h1>
 
 <ul class="eventList">
@@ -31,38 +32,31 @@
   </ul>
 
   <ul class="days">
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
-    <li>4</li>
-    <li>5</li>
-    <li>6</li>
-    <li>7</li>
-    <li>8</li>
-    <li>9</li>
-    <li>10</li>
-    <li>11</li>
-    <li>12</li>
-    <li>13</li>
-    <li>14</li>
-    <li>15</li>
-    <li>16</li>
-    <li>17</li>
-    <li>18</li>
-    <li>19</li>
-    <li><span class="active">20</span></li>
-    <li>21</li>
-    <li><span class="active">22</span></li>
-    <li>23</li>
-    <li>24</li>
-    <li>25</li>
-    <li>26</li>
-    <li>27</li>
-    <li>28</li>
-    <li>29</li>
-    <li>30</li>
+  <!-- Displaying of list items is currently WIP. This logic will not function correctly, yet. -->
+  {% for day in range(context['days'])%}
+      <li>{{ context['day_int'] }}</li>
+  {% endfor %}
   </ul>
 </div>
 
-{% endblock %}
+<script>
+  // Code for setting up the agenda with the right data. WIP
+  $(document).ready(function() {
+    console.log("call");
 
+    $.ajax({
+      url: 'get_events',
+      type: 'GET',
+      success: function (response) {
+        console.log("GET succesfully completed");
+        console.log(response[0]);
+      }
+    })
+
+    currentDate = new Date()
+    var daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0).getDate();
+    console.log(daysInMonth);
+  });
+</script>
+
+{% endblock %}
