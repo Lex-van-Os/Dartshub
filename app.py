@@ -1,14 +1,14 @@
 # imports for atm
-from flask import Flask, render_template, request
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, render_template, jsonify, request
 from flask_migrate import Migrate
+from datetime import datetime, date
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.exc import SQLAlchemyError
+from calendar import monthrange
 import os
 
-# Deze module gebruiken we straks voor onze REST_Api, ik zet het alvast hierin neer.
-from flask_restful import Resource, Api
-
-# home dir app.py, this var is created to make a basedir for the sqlite file in this files contains our db...
-basedir = os.path.abspath(os.path.dirname(__file__))
+# home dir app.py, this var is created to make a basedir for the sqlite file in this files contains our db..
+BASE_DIR = os.path.dirname(os.path.abspath(__name__))
 
 # create the flask app
 app = Flask(__name__)
@@ -19,32 +19,84 @@ app.config['SECRET_KEY'] = 'LaterDitVeranderenIVMsecurity'
 app.config['FLASK_ENV'] = 'development'
 
 # configure app to locate the resources of sqlite and his database
-app.config['SQLALCHELMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(
-    basedir, 'database.sqlite')
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(BASE_DIR, 'database.sqlite')
 
 # track db changes, can be turned on but it's resources intensive... so for now please let it be False
-app.config['SQLALCHELMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # create db var to use it to query, create, delete, read and update tables models etc...
 db = SQLAlchemy(app)
 
+# imports event form model
+from model import Event
+
 # with migrate we can upgrade our tables and models for this there are several instructions for it.
 Migrate(app, db)
 
-
 # Routes of the webpages
-@app.route("/")
-@app.route("/home")
-def index():
+# The code below produces errors when starting the project. Commented on 1-12-2021 17:51
+# @app.route("/")
+# @app.route("/home")
+# def index():
 
-    return render_template('index.html')
+
+# @app.route("/agenda")
+#     return render_template('index.html')
+
+# Function for retrieving events for database. Refactored, seeing how this may be used in multiple other functions
+def get_events_from_db():
+       
+    # Gets current date
+    currentDate = datetime.now().date()
+    currentDateEu = f"{currentDate.day}-{currentDate.month}-{currentDate.year}"
+    
+    # Get events with try and except
+    try:
+        # Get events
+        events = Event.query.filter(Event.date <= currentDateEu).all()
+    except SQLAlchemyError as e: # Error
+        error = str(e.__dict__['orig'])
+        return error
+
+    else:
+        return events
 
 
-@app.route("/agenda")
+# Function for retrieving events through a request
+@app.route("/get_events", methods=['GET'])
+def get_events():
+    
+    # Events are retrieved and are then converted to a json format, using the model serialize property, by looping through all fields
+    events = get_events_from_db()
+    return jsonify([field.serialize for field in events])
+
+
+# Function for loading the agenda page with the needed data
+@app.route("/agenda", methods=['GET', 'POST'])
 def agenda():
-    return render_template("agenda.html.jinja")
+    now = datetime.now()
+
+    # Dictionary of returned data, so that multiple pieces of data can be returned to a page
+    # This context is WIP and might be discarded when agenda logic is completed through JQuery
+    context = {
+        'eventData': get_events_from_db(),
+        'days': monthrange(now.year, now.month)[1], # Get all days of current month, for displaying
+        'day_int': 1,
+    }
+        
+    # Use {{ context[{name of context item}] }} to acces context data in the front-end.
+    return render_template("agenda.html.jinja",  context=context)
 
 
+
+@app.route("/form")
+def form():
+    return render_template("form.html")
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
+    
 # run python/flask app
 if __name__ == "__main__":
 
