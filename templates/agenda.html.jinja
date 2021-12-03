@@ -1,0 +1,62 @@
+{% extends "layout/base.html.jinja" %}
+
+{% block content %}
+
+<h1>Dartsbond Almere Agenda</h1>
+
+<ul class="eventList">
+  <li><label class="date">20e</label> Dart wedstrijd kroeg het Jokertje.</li>
+  <li><label class="date">22e</label> Dart wedstrijd kroeg het Haantje.</li>
+</ul>
+
+<div class="month">
+  <ul>
+    <li class="prev">&#10094;</li>
+    <li class="next">&#10095;</li>
+    <li>
+      November<br />
+      <span style="font-size: 18px">2021</span>
+    </li>
+  </ul>
+</div>
+
+<div class="calender">
+  <ul class="weekdays">
+    <li>Mo</li>
+    <li>Tu</li>
+    <li>We</li>
+    <li>Th</li>
+    <li>Fr</li>
+    <li>Sa</li>
+    <li>Su</li>
+  </ul>
+
+  <ul class="days">
+  <!-- Displaying of list items is currently WIP. This logic will not function correctly, yet. -->
+  {% for day in range(context['days'])%}
+      <li>{{ context['day_int'] }}</li>
+  {% endfor %}
+  </ul>
+</div>
+
+<script>
+  // Code for setting up the agenda with the right data. WIP
+  $(document).ready(function() {
+    console.log("call");
+
+    $.ajax({
+      url: 'get_events',
+      type: 'GET',
+      success: function (response) {
+        console.log("GET succesfully completed");
+        console.log(response[0]);
+      }
+    })
+
+    currentDate = new Date()
+    var daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0).getDate();
+    console.log(daysInMonth);
+  });
+</script>
+
+{% endblock %}

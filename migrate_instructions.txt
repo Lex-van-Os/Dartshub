@@ -1,0 +1,12 @@
+Hi 
+
+Als iemand tables/models wilt aanpassen, gebruik dan de flask CLI 
+
+1. flask db init om een migrate folder aan te maken. 
+
+2. flask db migrate -m "TYPE HIER EEN COMMENT VOOR JEZELF ALS VOORBEELD (TABLES AANGEMAAKT)"
+
+3. flask db upgrade om de updates door te voeren. 
+
+Bye guys :)
+
