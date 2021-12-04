@@ -1,4 +1,6 @@
 # imports for atm
+from model import Event
+from flask import Flask, render_template
 from flask import Flask, render_template, jsonify, request
 from flask_migrate import Migrate
 from datetime import datetime, date
@@ -19,7 +21,8 @@ app.config['SECRET_KEY'] = 'LaterDitVeranderenIVMsecurity'
 app.config['FLASK_ENV'] = 'development'
 
 # configure app to locate the resources of sqlite and his database
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(BASE_DIR, 'database.sqlite')
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + \
+    os.path.join(BASE_DIR, 'database.sqlite')
 
 # track db changes, can be turned on but it's resources intensive... so for now please let it be False
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -28,12 +31,42 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # imports event form model
-from model import Event
 
 # with migrate we can upgrade our tables and models for this there are several instructions for it.
 Migrate(app, db)
 
 # Routes of the webpages
+
+
+@app.route("/")
+@app.route("/home")
+def index():
+
+
+@app.route("/agenda")
+return render_template('index.html')
+
+
+@app.route("/agenda", methods=['GET'])
+def agenda():
+
+    # Gets current date
+    date = datetime.now().date()
+    currentDate = f"{date.day}-{date.month}-{date.year}"
+
+    # Get events with try and except
+    try:
+        # Get events
+        events = Event.query.filter(Event.date <= currentDate).all()
+    except SQLAlchemyError as e:  # Error
+        error = str(e.__dict__['orig'])
+        return error
+    finally:
+        print(events)
+
+        # Use {{ eventData }} to acces event data in the front-end.
+        return render_template("agenda.html.jinja",  eventData=events)
+      
 # The code below produces errors when starting the project. Commented on 1-12-2021 17:51
 # @app.route("/")
 # @app.route("/home")
@@ -88,15 +121,21 @@ def agenda():
     return render_template("agenda.html.jinja",  context=context)
 
 
-
 @app.route("/form")
+return render_template("form.html")
+
+
+@app.route("/form", mehtods=['POST'])
 def form():
-    return render_template("form.html")
+
+    # Gets event name
+
+    #
 
 
 if __name__ == "__main__":
     app.run(debug=True)
-    
+
 # run python/flask app
 if __name__ == "__main__":
 
