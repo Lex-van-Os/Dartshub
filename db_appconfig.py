@@ -1,4 +1,5 @@
 # imports for atm
+from model import Agenda
 from flask import Flask, render_template, request, jsonify
 # from flask_migrate import Migrate
 from datetime import datetime
@@ -29,7 +30,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # imports event form model
-from model import Agenda
 
 # with migrate we can upgrade our tables and models for this there are several instructions for it.
 # Migrate(app, db)
@@ -98,8 +98,3 @@ def agenda():
 
     # Use {{ context[{name of context item}] }} to acces context data in the front-end.
     return render_template("agenda.html.jinja")
-
-
-@app.route("/form")
-def form():
-    return render_template("form.html")
