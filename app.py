@@ -66,7 +66,7 @@ def agenda():
 
         # Use {{ eventData }} to acces event data in the front-end.
         return render_template("agenda.html.jinja",  eventData=events)
-      
+
 # The code below produces errors when starting the project. Commented on 1-12-2021 17:51
 # @app.route("/")
 # @app.route("/home")
@@ -78,16 +78,16 @@ def agenda():
 
 # Function for retrieving events for database. Refactored, seeing how this may be used in multiple other functions
 def get_events_from_db():
-       
+
     # Gets current date
     currentDate = datetime.now().date()
     currentDateEu = f"{currentDate.day}-{currentDate.month}-{currentDate.year}"
-    
+
     # Get events with try and except
     try:
         # Get events
         events = Event.query.filter(Event.date <= currentDateEu).all()
-    except SQLAlchemyError as e: # Error
+    except SQLAlchemyError as e:  # Error
         error = str(e.__dict__['orig'])
         return error
 
@@ -98,7 +98,7 @@ def get_events_from_db():
 # Function for retrieving events through a request
 @app.route("/get_events", methods=['GET'])
 def get_events():
-    
+
     # Events are retrieved and are then converted to a json format, using the model serialize property, by looping through all fields
     events = get_events_from_db()
     return jsonify([field.serialize for field in events])
@@ -113,24 +113,25 @@ def agenda():
     # This context is WIP and might be discarded when agenda logic is completed through JQuery
     context = {
         'eventData': get_events_from_db(),
-        'days': monthrange(now.year, now.month)[1], # Get all days of current month, for displaying
+        # Get all days of current month, for displaying
+        'days': monthrange(now.year, now.month)[1],
         'day_int': 1,
     }
-        
+
     # Use {{ context[{name of context item}] }} to acces context data in the front-end.
     return render_template("agenda.html.jinja",  context=context)
 
 
-@app.route("/form")
-return render_template("form.html")
-
-
-@app.route("/form", mehtods=['POST'])
+@app.route("/form", methods=['GET', 'POST'])
 def form():
-
+    return render_template("form.html")
     # Gets event name
 
-    #
+    # The database we use to gather the information from forms: flaskwtforms
+
+    # The form.html web page needs the backend to get the data from the form submitted
+    # to be displayed to the user by sending them an email
+    # POST & GET methods are required
 
 
 if __name__ == "__main__":
