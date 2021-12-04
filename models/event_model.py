@@ -1,7 +1,5 @@
 # moduls to create the model
-from db_appconfig import db
-from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from config import db
 """
 How to add new migrations? Via Terminal
 
@@ -15,7 +13,7 @@ BELANGRIJK: CHRIS IK HEB JE TABLE EEN BEETJE AANGEPAST ANDERS FUNCTIONEERT HIJ N
 """
 
 
-class Agenda(db.Model):
+class Event(db.Model):
 
     __tablename__ = 'events'
     id = db.Column(db.Integer, primary_key=True)

@@ -1,7 +1,4 @@
 {
-<<<<<<< HEAD
-    "python.formatting.provider": "autopep8"
-=======
-    "python.pythonPath": "/usr/local/bin/python3"
->>>>>>> 99b4483b2cb682ba743f7bd63852b59a21752ffd
+    "python.pythonPath": "/usr/local/bin/python3",
+    "python.formatting.provider": "yapf"
 }

@@ -32,10 +32,6 @@
   </ul>
 
   <ul class="days">
-  <!-- Displaying of list items is currently WIP. This logic will not function correctly, yet. -->
-  {% for day in range(context['days'])%}
-      <li>{{ context['day_int'] }}</li>
-  {% endfor %}
   </ul>
 </div>
 
@@ -45,7 +41,7 @@
     console.log("call");
 
     $.ajax({
-      url: 'get_events',
+      url: '/api/almere/events/'+"eten",
       type: 'GET',
       success: function (response) {
         console.log("GET succesfully completed");
