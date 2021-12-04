@@ -1,3 +1,4 @@
+# backup voor mochten jullie de real form verneuken
 # modules to create a flask form
 from flask_wtf import FlaskForm
 from wtforms import StringField, SelectMultipleField, SubmitField, validators, BooleanField, IntegerField
