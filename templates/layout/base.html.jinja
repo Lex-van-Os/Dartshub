@@ -24,52 +24,15 @@
     {% endblock %}
   </head>
   <body>
-    {# make header img #} {# make logo #} {# make navigation #} {# make sidebar
-    #}
-    <div class="container">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand h1" href="#">Dartsbondalmere.nl </a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon">container-fluid>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">DBA</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">info</a></li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">competitie</a>
-              </li>
-              <li class="nav-item"><a class="nav-link" href="#">Beker</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Ranking</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Jeugd</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Laco</a></li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Kampioenen</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <header><img src="" alt="" /></header>
-      <div class="logo"></div>
-      <aside>
-        <!-- put widget here -->
-      </aside>
-    </div>
+    <aside>
+      <!-- put widget here -->
+    </aside>
     <div id="content">{% block content %}{% endblock %}</div>
-    <div id="footer">
-      {% block footer %} &copy; Copyright 2008 by
-      <a href="http://domain.invalid/">you</a>. {% endblock %}
+    <div class="container">
+      <div id="footer">
+        {% block footer %} &copy; Copyright 2008 by
+        <a href="http://domain.invalid/">you</a>. {% endblock %}
+      </div>
     </div>
 
     {# Bootstrap Bundle with Popper #}
@@ -82,4 +45,3 @@
     {% block script %} {% endblock %}
   </body>
 </html>
-
