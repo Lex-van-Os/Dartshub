@@ -17,18 +17,67 @@
       crossorigin="anonymous"
     />
 
-    {# our custom css #}
+    <!-- our custom css -->
     <link rel="stylesheet" href="static/styles/style.css" />
 
     <title>{% block title %}{% endblock %} - Dartsbond Almere</title>
     {% endblock %}
   </head>
+
   <body>
-    <aside>
-      <!-- put widget here -->
-    </aside>
-    <div id="content">{% block content %}{% endblock %}</div>
     <div class="container">
+      <div class="row">
+        <header>
+          <div class="logo" style="padding-top: 1em">
+            <a class="title" href="#"> Dartsbondalmere.nl </a>
+            <div class="sub_title">
+              de Dartsbond voor Flevoland en omstreken
+            </div>
+          </div>
+          <nav>
+            <ul class="nav_menu">
+              <li class="nav_item_1">
+                <a>DBA</a>
+                <ul class="drop_cont">
+                  <li>test</li>
+                  <li>test2</li>
+                  <li>test3</li>
+                </ul>
+              </li>
+              <li class="nav_item_2">
+                <a>Info</a>
+                <ul class="drop_cont">
+                  test
+                </ul>
+              </li>
+              <li class="nav_item_3"><a>Competitie</a></li>
+              <li class="nav_item_4"><a>Beker</a></li>
+              <li class="nav_item_5"><a>Ranking</a></li>
+              <li class="nav_item_6"><a>Jeugd</a></li>
+              <li class="nav_item_7"><a>LaCo</a></li>
+              <li class="nav_item_8"><a>Kampioenen</a></li>
+            </ul>
+          </nav>
+          <div class="img_cont">
+            <img class="banner" src="/static/img/banner.jpg" />
+          </div>
+        </header>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div id="content">{% block content %}{% endblock %}</div>
+        </div>
+        <div class="col-md-4 overflow-hidden">
+          <section class="widgets">
+            {% include "layout/widgets.html.jinja" %}
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" style="padding-top: 2em">
       <div id="footer">
         {% block footer %} &copy; Copyright 2008 by
         <a href="http://domain.invalid/">you</a>. {% endblock %}
