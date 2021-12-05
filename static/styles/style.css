@@ -78,13 +78,110 @@ body {
   font-weight: bold;
 }
 
-.nav-link,
-.nav-item {
-  color: black !important;
+.wrapper {
+  padding: 10%;
 }
 
-h1,
-h2 {
-  font-family: Montserrat, "Helvetica Neue", sans-serif;
-  font-size: 2.5em;
+.logo {
+  padding-bottom: 5%;
+}
+
+.title {
+  color: black;
+  text-decoration: none;
+  font-size: 2em;
+}
+
+.title:hover {
+  color: blue;
+}
+
+.sub_title {
+  color: grey;
+}
+
+.nav_menu {
+  padding: 0px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav_item_1:hover {
+  color: blue;
+}
+
+.nav_item_1:hover .drop_cont {
+  display: block;
+}
+
+.nav_item_2:hover {
+  color: blue;
+}
+
+.nav_item_2:hover .drop_cont {
+  display: block;
+}
+
+.nav_item_3:hover {
+  color: blue;
+}
+
+.nav_item_4:hover {
+  color: blue;
+}
+
+.nav_item_5:hover {
+  color: blue;
+}
+
+.nav_item_6:hover {
+  color: blue;
+}
+
+.nav_item_7:hover {
+  color: blue;
+}
+
+.nav_item_8:hover {
+  color: blue;
+}
+
+.drop_cont {
+  color: black;
+  position: absolute;
+  display: none;
+  z-index: 10;
+}
+
+.img_cont {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: 1em;
+}
+
+.banner {
+  width: 100%;
+}
+
+.all_cont {
+  display: flex;
+  justify-content: space-between;
+  gap: 2.5em;
+  padding-top: 5em;
+}
+
+.content {
+}
+
+.widgets {
+  width: 40em;
+}
+
+.widgets_1 {
+}
+
+.hor_line {
+  color: rgb(189, 189, 189);
+  size: 1px;
 }
