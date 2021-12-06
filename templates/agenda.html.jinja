@@ -9,10 +9,10 @@
 
 <div class="month">
   <ul>
-    <li class="prev">&#10094;</li>
-    <li class="next">&#10095;</li>
+    <li class="prev prev_month">&#10094;</li>
+    <li class="next next_month">&#10095;</li>
     <li>
-      November<br />
+      December<br />
       <span style="font-size: 18px">2021</span>
     </li>
   </ul>
@@ -29,19 +29,57 @@
     <li>Su</li>
   </ul>
 
+  <!-- Days are automatically generated through Javascript functionality -->
   <ul class="days" id="agenda_days">
-  <!-- Displaying of list items is currently WIP. This logic will not function correctly, yet. -->
   </ul>
 </div>
 
 <script>
+
+  // Test data for the agenda because the AJAX calls don't work properly yet
+  test_items = [
+      test_item_1 =
+         {
+          'name': 'test_event_1',
+          'date': '14-12-2021',
+          'time': '12:51',
+          'desc': 'Testdesc',
+          'age': '19',
+         },
+
+      test_item_2 =
+        {
+        'name': 'test_event_2',
+        'date': '28-12-2021',
+        'time': '19:24',
+        'desc': 'Testdesc',
+        'age': '32',
+        },
+
+      test_item_3 =
+        {
+        'name': 'test_event_3',
+        'date': '19-12-2021',
+        'time': '21:00',
+        'desc': 'Testdesc',
+        'age': '56',
+        },
+  ]
   // Code for setting up the agenda with the right data. WIP
   $(document).ready(function() {
     console.log("call");
 
+
+    // Doesn't work currently. API is still more or less WIP by date 06-12-2021. Will use API once this is stable 
     $.ajax({
-      url: '/api/v1/almere/events/lex',
+      url: '/api/v2/almere/events/testevent',
       type: 'POST',
+      data: {
+        'date': '14-12-2021',
+        'time': '12:51',
+        'desc': 'Testdesc',
+        'age': 19,
+      },
       success: function (response) {
         console.log("POST succesfully completed");
         console.log(response);
@@ -49,21 +87,46 @@
       }
     })
 
+    // Get current date / days for dynamically loading agenda days
     currentDate = new Date()
-    var daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
-    console.log(daysInMonth);
-    fillAgendaDays(daysInMonth)
+    current_month = currentDate.getMonth();
+    var daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate(); // Get month returns last month for some reason, because of that + 1
+    fillAgendaDays(daysInMonth);
+    fillAgendaEvents();
   });
 
+  // Fills the agenda with the current month days
   function fillAgendaDays(total_days) {
     for(day_counter = 1; day_counter < total_days + 1; day_counter++) {
-      $("#agenda_days").append("<li id='day-" + day_counter + "'>" + day_counter + "</li>")
+      $("#agenda_days").append("<li id='day-" + day_counter + "'>" + day_counter + "</li>");
     }
   }
 
-  function fillAgendaEvents() {
-    
+  // Deconstructs the returned event data to extract the days only
+  function getEventDays(events) {
+    event_days = []
+      for(item = 0; item < test_items.length; item++) {
+        event_days.push(test_items[item]['date'].split("-", 1)[0])
+    }
+    return event_days
+  }
+
+  // Fills the agenda by looking up the dates from getEventDays(), and by looking up the day id that has the day in the name
+  function fillAgendaEvents(events) {
+    event_days = getEventDays(events);
+    for(event_day of event_days) {
+      $("#day-" + event_day).addClass("event_day");
+    }
   }
 </script>
+
+<style>
+  /* Class for a day with an event */
+  .event_day {
+    color: #0030ce !important;
+    font-weight: bold;
+    background-color: #b8b8b8;
+  }
+</style>
 
 {% endblock %}
