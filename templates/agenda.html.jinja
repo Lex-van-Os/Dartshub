@@ -40,14 +40,11 @@
     console.log("call");
 
     $.ajax({
-      url: '/api/almere/events/get',
-      type: 'GET',
-      data: {
-        name: "Demo"
-      },
+      url: '/api/v1/almere/user/'+"Test",
+      type: 'POST',
       success: function (response) {
-        console.log("GET succesfully completed");
-        console.log(response);
+        console.log("POST succesfully completed");
+        console.log(JSON.stringify(response));
       }
     })
 
