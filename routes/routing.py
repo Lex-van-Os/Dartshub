@@ -1,15 +1,12 @@
-from config import app, api
-from flask_migrate import Migrate
-from flask import render_template, request
-from controller.event_api_controller import RestEvents
-
+from config import app
+from flask import render_template
 
 # Routes of the webpages
 @app.route("/")
 @app.route("/home")
 def index():
 
-    return render_template('index.html')
+    return render_template("index.html")
 
 
 @app.route("/agenda")
@@ -21,6 +18,3 @@ def agenda():
 @app.route("/form")
 def form():
     return render_template("form.html")
-
-
-api.add_resource(RestEvents, '/api/almere/events/<string:name>')
