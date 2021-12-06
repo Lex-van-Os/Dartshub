@@ -29,31 +29,43 @@
     <li>Su</li>
   </ul>
 
-  <ul class="days"></ul>
+  <ul class="days" id="agenda_days">
+  <!-- Displaying of list items is currently WIP. This logic will not function correctly, yet. -->
+  </ul>
 </div>
 
 <script>
   // Code for setting up the agenda with the right data. WIP
-  $(document).ready(function () {
+  $(document).ready(function() {
     console.log("call");
 
     $.ajax({
-      url: "/api/almere/events/" + "eten",
-      type: "GET",
+      url: '/api/almere/events/get',
+      type: 'GET',
+      data: {
+        name: "Demo"
+      },
       success: function (response) {
         console.log("GET succesfully completed");
-        console.log(response[0]);
-      },
-    });
+        console.log(response);
+      }
+    })
 
-    currentDate = new Date();
-    var daysInMonth = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth(),
-      0
-    ).getDate();
+    currentDate = new Date()
+    var daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
     console.log(daysInMonth);
+    fillAgendaDays(daysInMonth)
   });
+
+  function fillAgendaDays(total_days) {
+    for(day_counter = 1; day_counter < total_days + 1; day_counter++) {
+      $("#agenda_days").append("<li id='day-" + day_counter + "'>" + day_counter + "</li>")
+    }
+  }
+
+  function fillAgendaEvents() {
+    
+  }
 </script>
 
 {% endblock %}
