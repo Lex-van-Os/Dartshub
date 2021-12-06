@@ -11,7 +11,6 @@ def index():
 
 @app.route("/agenda")
 def agenda():
-
     return render_template("agenda.html.jinja")
 
 
