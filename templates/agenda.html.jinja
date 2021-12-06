@@ -1,6 +1,4 @@
-{% extends "layout/base.html.jinja" %}
-
-{% block content %}
+{% extends "layout/base.html.jinja" %} {% block content %}
 
 <h1>Dartsbond Almere Agenda</h1>
 
@@ -31,13 +29,12 @@
     <li>Su</li>
   </ul>
 
-  <ul class="days">
-  </ul>
+  <ul class="days"></ul>
 </div>
 
 <script>
   // Code for setting up the agenda with the right data. WIP
-  $(document).ready(function() {
+  $(document).ready(function () {
     console.log("call");
 
     $.ajax({
