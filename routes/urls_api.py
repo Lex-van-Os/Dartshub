@@ -1,5 +1,4 @@
 from config import api
-from flask_restful import reqparse
 from controller.event_api_controller import (
     RestEvents,
     RestEventsTwee,
@@ -22,13 +21,6 @@ api.add_resource(
     "/api/v1/almere/events/<string:name>",
     endpoint="name",
 )
-
-name_pars = reqparse.RequestParser()
-name_pars.add_argument("date", type=int, help="date is required", required=True)
-name_pars.add_argument("time", type=int, help="time is required", required=True)
-name_pars.add_argument("desc", type=int, help="desc is required", required=True)
-name_pars.add_argument("age", type=int, help="age is required", required=True)
-name_params = name_pars.parse_args()
 
 api.add_resource(
     RestEventsTwee,

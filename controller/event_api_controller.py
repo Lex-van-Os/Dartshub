@@ -2,9 +2,29 @@
 from config import db
 from models.event_model import Event
 from models.event_model2 import EventAgenda
-from flask_restful import Resource
 from datetime import datetime
 from sqlalchemy import exc
+from flask_restful import Resource, reqparse
+
+name_pars = reqparse.RequestParser()
+name_pars.add_argument("date",
+                       type=int,
+                       help="date is required",
+                       required=True)
+name_pars.add_argument("time",
+                       type=int,
+                       help="time is required",
+                       required=True)
+name_pars.add_argument("desc",
+                       type=str,
+                       help="desc is required",
+                       required=True)
+name_pars.add_argument(
+    "age",
+    type=int,
+    help="age is required",
+    required=True,
+)
 
 
 # create a resource, with all "well at least DEL, GET and POST" HTTP methods
@@ -75,9 +95,14 @@ class RestEvents(Resource):
 
 # trying to create the full functionality for the rest API
 class RestEventsTwee(Resource):
-    def get(self, name, date, time, desc, age):
-
-        event = EventAgenda.query.filter_by(name=name, date=date).first()
+    def get(self, name):
+        name_extra_params = name_pars.parse_args()
+        event = EventAgenda.query.filter_by(
+            name=name,
+            date=name_extra_params["date"],
+            time=name_extra_params["time"],
+            desc=name_extra_params["desc"],
+            age=name_extra_params["age"]).first()
 
         if event:
             return event.json()
@@ -88,14 +113,26 @@ class RestEventsTwee(Resource):
                 "Resource": None,
             }, 404
 
-    def post(self, name, date, time, desc, age):
-
-        event = EventAgenda(name=name, date=date, time=time, desc=desc, age=age)
+    def post(self, name):
+        name_extra_params = name_pars.parse_args()
+        event = EventAgenda(name=name,
+                            date=name_extra_params["date"],
+                            time=name_extra_params["time"],
+                            desc=name_extra_params["desc"],
+                            age=name_extra_params["age"])
 
         db.session.add(event)
         db.session.commit()
 
-        return event.json()
+        if event:
+            return event.json(), 200
+        else:
+            return {
+                "Note":
+                "Could not POST resource(s), probably because wrong arguments or parameters were passed",
+                "Status": "400",
+                "Resource": None,
+            }, 404
 
     def delete(self, name):
 
