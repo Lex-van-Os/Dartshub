@@ -6,7 +6,7 @@ from flask_restful import Resource, reqparse
 
 name_pars = reqparse.RequestParser()
 name_pars.add_argument("date",
-                       type=int,
+                       type=str,
                        help="date is required",
                        required=True)
 name_pars.add_argument("time",

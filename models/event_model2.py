@@ -1,6 +1,5 @@
 # moduls to create the model
 from config import db
-
 """
 How to add new migrations? Via Terminal
 
