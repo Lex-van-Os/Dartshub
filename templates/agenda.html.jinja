@@ -61,19 +61,22 @@
         },
   ]
   // Code for setting up the agenda with the right data. WIP
-  $(document).ready(function() {
-    console.log("call");
-
-
-    // Doesn't work currently. API is still more or less WIP by date 06-12-2021. Will use API once this is stable 
+  $(document).ready(function () {
+    var dates = new Date();
+    let day = dates.getDate();
+    let month = dates.getMonth();
+    let year = dates.getFullYear();
+    let currentDate = [day + '-' + (month +1) + '-' + year]
+    JSON.stringify(currentDate)
     $.ajax({
-      url: '/api/v2/almere/events/testevent',
+      
+      url: '/api/v2/almere/events/test',
       type: 'POST',
       data: {
-        'date': '14-12-2021',
-        'time': '12:51',
-        'desc': 'Testdesc',
-        'age': 19,
+          "date" : JSON.stringify(currentDate),
+          "time" : 2,
+          "desc" : "dit is een test",
+          "age" : 20
       },
       success: function (response) {
         console.log("POST succesfully completed");
