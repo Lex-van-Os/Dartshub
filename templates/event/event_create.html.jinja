@@ -1,0 +1,22 @@
+{% extends "layout/base.html.jinja" %}
+
+{% block content %}
+
+    <h1><span>Nieuw Evenement</span></h1>
+
+    <form action="#" method="POST"
+        onsubmit="alert('Nieuw Evenement Aangemaakt!'); return false">
+
+        Naam Evenement: <input type="text" name="event"><br><br>
+        Datum Evenement: <input type="text" name="date"><br><br>
+        Categorie Evenement: <input type="text" name="categorie"><br><br>
+        Locatie Evenement: <input type="text" name="location"><br><br>
+        Naam Eigenaar: <input type="text" name="naam"><br><br>
+        Telefoon: <input type="text" name="telefoon"><br><br>
+        E-mail: <input type="text" name="email"><br><br>
+
+        <input type="submit" value="submit">
+{% endblock content %}
+
+<script>
+// Code for setting up the form with the right data. WIP
