@@ -1,73 +1,194 @@
-* {box-sizing: border-box;}
-ul {list-style-type: none;}
-body {font-family: Verdana, sans-serif;}
+:root {
+  --gap: 1em;
+}
+* {
+  box-sizing: border-box;
+}
+ul {
+  list-style-type: none;
+}
+body {
+  font-family: Verdana, sans-serif;
+}
 
 .month {
-    margin: auto;
-    padding: 70px 25px;
-    width: 80%;
-    text-align: center;
+  margin: auto;
+  padding: 80px 25px;
+  width: 80%;
+  text-align: center;
 }
 
 .month ul {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .month ul li {
-    color: black;
-    font-size: 20px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
+  color: black;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
 }
 
 .month .prev {
-    float: left;
-    padding-top: 10px;
+  float: left;
+  padding-top: 10px;
 }
 
 .month .next {
-    float: right;
-    padding-top: 10px;
+  float: right;
+  padding-top: 10px;
 }
 
+
 .weekdays {
-    margin: auto;
-    padding: 10px 0;
-    background-color: #ddd;
+  margin: auto;
+  padding: 10px 0;
+  background-color: #ddd;
 }
 
 .weekdays li {
-    display: inline-block;
-    width: 13.6%;
-    color: #666;
-    text-align: center;
+  display: inline-block;
+  width: 13.6%;
+  color: #666;
+  text-align: center;
 }
 
+
+
 .days {
-    padding: 10px 0;
-    background: #eee;
-    margin: auto;
+  padding: 10px 0;
+  background: #eee;
+  margin: auto;
 }
 
 .days li {
-    list-style-type: none;
-    display: inline-block;
-    width: 13.6%;
-    height: 50px;
-    text-align: center;
-    margin-bottom: 5px;
-    font-size:12px;
-    color: #777;
+  list-style-type: none;
+  display: inline-block;
+  width: 13.6%;
+  height: 50px;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size: 12px;
+  color: #777;
 }
 
 .days li .active {
-    padding: 5px;
-    background: #0030ce;
-    color: white !important
+  padding: 5px;
+  background: #0030ce;
+  color: white !important;
 }
 
 .eventList .date {
   color: #0030ce;
   font-weight: bold;
+}
+
+.wrapper {
+  padding: 10%;
+}
+
+.logo {
+  padding-bottom: 5%;
+}
+
+.title {
+  color: black;
+  text-decoration: none;
+  font-size: 2em;
+}
+
+.title:hover {
+  color: blue;
+}
+
+.sub_title {
+  color: grey;
+}
+
+.nav_menu {
+  padding: 0px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav_item_1:hover {
+  color: blue;
+}
+
+.nav_item_1:hover .drop_cont {
+  display: block;
+}
+
+.nav_item_2:hover {
+  color: blue;
+}
+
+.nav_item_2:hover .drop_cont {
+  display: block;
+}
+
+.nav_item_3:hover {
+  color: blue;
+}
+
+.nav_item_4:hover {
+  color: blue;
+}
+
+.nav_item_5:hover {
+  color: blue;
+}
+
+.nav_item_6:hover {
+  color: blue;
+}
+
+.nav_item_7:hover {
+  color: blue;
+}
+
+.nav_item_8:hover {
+  color: blue;
+}
+
+.drop_cont {
+  color: black;
+  position: absolute;
+  display: none;
+  z-index: 10;
+}
+
+.img_cont {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: 1em;
+}
+
+.banner {
+  width: 100%;
+}
+
+.all_cont {
+  display: flex;
+  justify-content: space-between;
+  gap: 2.5em;
+}
+
+.content {
+}
+
+.widgets {
+  width: 40em;
+}
+
+.hor_line {
+  color: rgb(189, 189, 189);
+  size: 1px;
+}
+
+.widget {
+  font-size: small;
+  color: rgb(255, 6, 6);
 }

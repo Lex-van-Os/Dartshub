@@ -1,6 +1,14 @@
+# backup voor mochten jullie de real form verneuken
 # modules to create a flask form
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectMultipleField, SubmitField, validators, BooleanField, IntegerField
+from wtforms import (
+    StringField,
+    SelectMultipleField,
+    SubmitField,
+    validators,
+    BooleanField,
+    IntegerField,
+)
 from wtforms.validators import DataRequired, Email
 
 
@@ -9,17 +17,15 @@ class EventsForm(FlaskForm):
 
     FirstName = StringField("Voornaam: ", [validators.required()])
     LastName = StringField("Achternaam: ", [validators.required()])
-    Email = StringField("Email address: ",
-                        validators=[DataRequired(), Email()])
-    Telephone = IntegerField('Telefoonnummer: ', [validators.required()])
+    Email = StringField("Email address: ", validators=[DataRequired(), Email()])
+    Telephone = IntegerField("Telefoonnummer: ", [validators.required()])
     Description = StringField("Opmerkingen: ", [validators.required()])
-    Dates = StringField("Op welk datum zou u willen spelen?: ",
-                        [validators.required()])
-    Locations = SelectMultipleField("Locations: ",
-                                    choices=[("Amsterdam"), ("Rotterdam"),
-                                             ("Den Haag")])
+    Dates = StringField("Op welk datum zou u willen spelen?: ", [validators.required()])
+    Locations = SelectMultipleField(
+        "Locations: ", choices=[("Amsterdam"), ("Rotterdam"), ("Den Haag")]
+    )
     Age = BooleanField("18 jaar ? ")
-    Payment = SelectMultipleField("Betaalmogelijkheden: ",
-                                  choices=[("Tikkie"), ("Creditcart"),
-                                           ("Cash")])
+    Payment = SelectMultipleField(
+        "Betaalmogelijkheden: ", choices=[("Tikkie"), ("Creditcart"), ("Cash")]
+    )
     Submit = SubmitField("Versturen")
