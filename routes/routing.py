@@ -15,5 +15,10 @@ def agenda():
 
 
 @app.route("/event/create")
-def form():
+def create_event():
     return render_template("event/event_create.html.jinja")
+
+
+@app.route("/event/edit")
+def edit_event():
+    return render_template("event/event_edit.html.jinja")
