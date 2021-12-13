@@ -1,4 +1,7 @@
-<body>
+{% extends "layout/base.html.jinja" %}
+
+{% block content %}
+
     <a href="https://dartsbondalmere.nl/evenementen/">
         << Alle Evenementen</a>
             <h1>{NAAM EVENEMENT}</h1>
@@ -18,6 +21,6 @@
                 <h3>Location</h3>
                 <p>dmv een api displayen van bijbehorende locatie-map</p>
             </div>
-</body>
+{% endblock content %}
 
-</html>
+
