@@ -1,0 +1,12 @@
+{% extends "layout/base.html.jinja" %}
+{% block content %}
+    <form method="post">
+        {{form.hidden_tag()}}
+        {{form.email.label}}{{form.email()}}
+        {{form.password.label}}{{form.password()}}
+        {{form.submit()}}
+    </form>
+    <div class="jumbotron">
+        <a href="{{url_for('login_google')}}">Log met een Google Account</a>
+    </div>
+{% endblock %}

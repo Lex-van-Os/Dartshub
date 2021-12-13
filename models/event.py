@@ -13,7 +13,7 @@ BELANGRIJK: CHRIS IK HEB JE TABLE EEN BEETJE AANGEPAST ANDERS FUNCTIONEERT HIJ N
 """
 
 
-class EventAgenda(db.Model):
+class Event(db.Model):
 
     __tablename__ = "events_agenda"
     id = db.Column(db.Integer, primary_key=True)
@@ -30,10 +30,6 @@ class EventAgenda(db.Model):
         self.desc = desc
         self.age = age
 
-    def init_db(self):
-        db.create_all()
-
-    # Ik heb dit gemaakt "Nilesh"
     def json(self):
 
         return {
@@ -43,14 +39,3 @@ class EventAgenda(db.Model):
             "desc": self.desc,
             "age": self.age,
         }
-
-    def __repr__(self):
-        events = {
-            "id": self.id,
-            "name": self.name,
-            "date": self.date,
-            "time": self.time,
-            "desc": self.desc,
-            "age": self.age,
-        }
-        return str(events)
