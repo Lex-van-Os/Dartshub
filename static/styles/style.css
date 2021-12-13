@@ -176,7 +176,8 @@ body {
   gap: 2.5em;
 }
 
-.content {
+#content {
+  padding-top: 5%;
 }
 
 .widgets {
@@ -191,4 +192,39 @@ body {
 .widget {
   font-size: small;
   color: rgb(255, 6, 6);
+}
+
+.participate_buttons {
+  display: flex;
+}
+
+.participate {
+  border:rgb(255, 6, 6)
+}
+
+.register {
+  border:rgb(255, 6, 6)
+}
+
+#button_container {
+  max-width: 500px !important; 
+}
+
+.event_title {
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.event_status {
+  padding-top: 7.5%;
+}
+
+.content_body {
+  display: flex;
+  justify-content: start;
+  gap: 10%;
+}
+
+.return_events {
+  color: black;
 }

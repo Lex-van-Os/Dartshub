@@ -1,7 +1,6 @@
 from config import app
 from flask import render_template
 
-
 # Routes of the webpages
 @app.route("/")
 @app.route("/home")
@@ -17,3 +16,7 @@ def agenda():
 @app.route("/event/create")
 def form():
     return render_template("event/event_create.html.jinja")
+
+@app.route("/event/location/detail")
+def location_detail():
+    return render_template("event/event_detail.html.jinja")

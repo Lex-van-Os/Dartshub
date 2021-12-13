@@ -1,23 +1,53 @@
-<body>
-    <a href="https://dartsbondalmere.nl/evenementen/">
-        << Alle Evenementen</a>
-            <h1>{NAAM EVENEMENT}</h1>
-            <h3>Gegevens</h3>
-            <div class="details">
-                <p>
-                    <!-- Using the flask wtforms to display on FE and get the info from BE -->
-                    Datum:
-                    <br><br>
-                    Tijd:
-                    <br><br>
-                    Evenement Categorie:
-                    <br><br>
-                </p>
-            </div>
-            <div class="location">
-                <h3>Location</h3>
-                <p>dmv een api displayen van bijbehorende locatie-map</p>
-            </div>
-</body>
+{% extends "layout/base.html.jinja" %}
 
-</html>
+{% block title %} {# insert pagetitle #} {% endblock %}
+
+{% block content %}
+<body>
+    <div class="content_header">
+        <a class="return_events" href="https://dartsbondalmere.nl/evenementen/">
+            << Alle Evenementen
+        </a>
+        <h6 class="event_status">Dit evenement is voorbij.</h6>
+        <hr class="hor_line">
+        <h1 class="event_title">LaCo Ronde 5 Heren en Dames</h1>
+    </div>
+    <div class="content_body">
+        <div class="details">
+            <h3>Gegevens</h3>
+            <p>
+                <!-- Using the flask wtforms to display on FE and get the info from BE -->
+                Datum: <br>
+                december 11 <br><br>
+                Tijd: <br>
+                13:00 - 18:00 <br><br>
+                Evenement Categorie: <br>
+                LaCo
+            </p>
+        </div>
+        <div class="location">
+            <h3>Locatie</h3>
+            <p>
+                Brunet <br>
+                Kampenweg 7 <br>
+                Almere, 1324SB <br><br>
+                Telefoon: <br>
+                06-32135421
+            </p>
+        </div>
+    </div>
+    <hr class="hor_line">
+    <div id="button_container" class="row align-items-center">
+        <div class="col">
+            <button type="button" class="btn btn-primary">Ik doe mee!</button>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-primary">Registreer!</button>
+        </div>
+    </div>
+</body>
+{% endblock %}
+
+{% block script %}
+{# insert pagesprecific javascript here #}
+{% endblock %}
