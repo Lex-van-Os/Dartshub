@@ -189,17 +189,17 @@ body {
 }
 
 /* button */
-.btn{
-border-radius: 0%;
+.btn{ /* this overwrites the bootstrap .btn class */
+  border-radius: 0%;
 }
+
 .btn--dark{
   background-color:#1a1a1a;
   color:white;
 }
-.btn--dark:hover{
- background-color:#0030ce;
- color: white;
-/* button */
-}
 
+.btn--dark:hover{
+  background-color:#0030ce;
+  color: white;
+}
 /* button end */
