@@ -16,7 +16,7 @@ BELANGRIJK: CHRIS IK HEB JE TABLE EEN BEETJE AANGEPAST ANDERS FUNCTIONEERT HIJ N
 
 class Event(db.Model):
 
-    __tablename__ = "events_agenda"
+    __tablename__ = "events"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=False, nullable=False)
     date = db.Column(db.Text, unique=False, nullable=False)
@@ -36,6 +36,7 @@ class Event(db.Model):
     def json(self):
 
         return {
+            "id": self.id,
             "name": self.name,
             "date": self.date,
             "time": self.time,
