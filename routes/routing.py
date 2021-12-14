@@ -1,21 +1,44 @@
+from flask.helpers import url_for
 from config import app
-from flask import render_template
+from flask import render_template, request, redirect
 
-# Routes of the webpages
+# Routes of the webpages http://127.0.0.1:5000/
 @app.route("/")
 @app.route("/home")
 def index():
     return render_template("home.html.jinja")
 
 
+# http://127.0.0.1:5000/agenda
 @app.route("/agenda")
 def agenda():
     return render_template("agenda.html.jinja")
 
 
-@app.route("/event/create")
-def form():
-    return render_template("event/event_create.html.jinja")
+# http://127.0.0.1:5000/event/event_create
+@app.route("/event/event_create")
+def event_create():
+    return render_template("/event/event_create.html.jinja")
+
+    # Dit meot nog
+    # , methods=["POST"]
+    # if request.method == "POST":
+    #     event_detail = request.form[
+    #         "date", "time", "event_category", "location", "phone_number"
+    #      ]
+    #     return redirect(request(url_for)"" = detail)
+    # else:
+
+
+# @app.route("/event/detail")
+# def detail():
+#     return f""
+
+
+# @app.route("/<event/detail>")
+# def event_detail():
+#     return f"<h1>{idk yet}</h1>"
+#     return render_template("event/event_detail.html.jinja")
 
 
 # @app.route("/create_event", methods=["GET", "POST"])

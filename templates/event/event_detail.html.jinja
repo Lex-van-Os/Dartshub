@@ -1,26 +1,26 @@
 {% extends "layout/base.html.jinja" %}
 
-{% block content %}
+{% block title%}Event Details Page{% endblock %}
 
-    <a href="https://dartsbondalmere.nl/evenementen/">
-        << Alle Evenementen</a>
-            <h1>{NAAM EVENEMENT}</h1>
-            <h3>Gegevens</h3>
-            <div class="details">
-                <p>
-                    <!-- Using the flask wtforms to display on FE and get the info from BE -->
-                    Datum:
-                    <br><br>
-                    Tijd:
-                    <br><br>
-                    Evenement Categorie:
-                    <br><br>
-                </p>
-            </div>
-            <div class="location">
-                <h3>Location</h3>
-                <p>dmv een api displayen van bijbehorende locatie-map</p>
-            </div>
+{% block content %}
+        <h1>NAAM EVENEMENT</h1>
+        <h3>Gegevens</h3>
+        <div class="details">
+            <p>Details of the Event</p>
+                <!-- Using the flask wtforms to display on FE and get the info from BE -->
+                <p>Datum:</p>
+                <p><input type="text" name="date"/></p>
+
+                <p>Tijd:</p>
+                <p><input type="text" name="time"/></p>
+                    
+                <p>Evenement Categorie:</p>
+                <p><input type="text" name="evenement_categorie"/></p>
+        </div>
+        <div class="location">
+        <h3>Locatie</h3>
+            <p>dmv een api + AJAX displayen van bijbehorende locatie-map</p>
+        </div>
 {% endblock content %}
 
 
