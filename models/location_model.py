@@ -1,9 +1,9 @@
 # moduls to create the model
 from config import db
 
-class EventAgenda(db.Model):
+class Location(db.Model):
 
-    __tablename__ = "events_agenda"
+    __tablename__ = "location"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=False, nullable=False)
     city = db.Column(db.String(248), unique=False, nullable=False)
@@ -11,17 +11,6 @@ class EventAgenda(db.Model):
     zipcode = db.Column(db.String(8), unique=False, nullable=True)
     phonenumber = db.Column(db.Integer, unique=False, nullable=False)
     link = db.Column(db.String(248), unique=False, nullable=False)
-
-    def __init__(self, name="", city="", adress="", zipcode="", phonenumber="", link=""):
-        self.name = name
-        self.city = city
-        self.adress = adress
-        self.zipcode = zipcode
-        self.phonenumber = phonenumber
-        self.link = link
-
-    def init_db(self):
-        db.create_all()
 
     def json(self):
 
