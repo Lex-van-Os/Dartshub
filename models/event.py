@@ -1,5 +1,6 @@
 # module to create the model
 from config import db
+from models import location_model
 
 """
 How to add new migrations? Via Terminal
@@ -14,7 +15,7 @@ BELANGRIJK: CHRIS IK HEB JE TABLE EEN BEETJE AANGEPAST ANDERS FUNCTIONEERT HIJ N
 """
 
 
-class EventAgenda(db.Model):
+class Event(db.Model):
 
     __tablename__ = "events_agenda"
     id = db.Column(db.Integer, primary_key=True)
@@ -23,6 +24,8 @@ class EventAgenda(db.Model):
     time = db.Column(db.Text, unique=False, nullable=False)
     desc = db.Column(db.String(248), unique=False, nullable=True)
     age = db.Column(db.Integer, unique=False, nullable=False)
+    locationID = db.Column(db.Integer, db.ForeignKey("location.id"), nullable=False)
+    user = db.relationship("Location", backref=db.backref("events_agenda"), lazy=True)
 
     def __init__(self, name="", date="", time="", desc="", age=""):
         self.name = name
@@ -31,10 +34,6 @@ class EventAgenda(db.Model):
         self.desc = desc
         self.age = age
 
-    def init_db(self):
-        db.create_all()
-
-    # Ik heb dit gemaakt "Nilesh"
     def json(self):
 
         return {
@@ -44,14 +43,3 @@ class EventAgenda(db.Model):
             "desc": self.desc,
             "age": self.age,
         }
-
-    def __repr__(self):
-        events = {
-            "id": self.id,
-            "name": self.name,
-            "date": self.date,
-            "time": self.time,
-            "desc": self.desc,
-            "age": self.age,
-        }
-        return str(events)
