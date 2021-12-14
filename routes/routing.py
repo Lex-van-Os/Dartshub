@@ -24,13 +24,6 @@ def edit_event():
 
 @app.route("/create-event", methods=['GET', 'POST'])
 def form():
-<<<<<<< HEAD
-    return render_template("event/event_create.html.jinja")
-
-@app.route("/event/location/detail")
-def location_detail():
-    return render_template("event/event_detail.html.jinja")
-=======
     myForm = EventsForm()
     return render_template("event/event_create.html.jinja",
                            title="Create Event",
@@ -41,4 +34,7 @@ def location_detail():
 
     # The form.html web page needs the backend to get the data from the form submitted
     # to be displayed to the user by sending them an email
->>>>>>> 4fb08d2613d187ddaadcaca275e2018c0e6dd2eb
+
+@app.route("/event/location/detail")
+def location_detail():
+    return render_template("event/event_detail.html.jinja")
