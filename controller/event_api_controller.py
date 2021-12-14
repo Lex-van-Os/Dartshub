@@ -1,7 +1,7 @@
 # modules for the rest api classes, model is imported to make connection with the sqlite tables and databases
 from config import db
 from models.event_model import Event
-from models.event import Event
+from models.event_model import Event
 from datetime import datetime
 from sqlalchemy import exc
 from flask_restful import Resource, reqparse

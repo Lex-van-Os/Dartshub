@@ -26,7 +26,7 @@ def edit_event():
 
 @app.route("/create-event", methods=['GET', 'POST'])
 def form():
-    return render_template("form.html")
+    return render_template("event/event_create.html.jinja")
 
 
 @app.route("/logout")
