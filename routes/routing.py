@@ -157,10 +157,13 @@ def welcome_user():
     return render_template("welcome_user.html")
 
 
-@app.route("/event/location/detail")
+@app.route("/events/location/detail")
 def location_detail():
     return render_template("event/event_detail.html.jinja")
 
+@app.route("/events")
+def event():
+    return render_template("events.html.jinja")
 
 @login_manager.user_loader
 def load_user(user_id):
