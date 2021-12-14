@@ -15,12 +15,12 @@ from wtforms.validators import DataRequired, Email
 # form to post data
 class EventsForm(FlaskForm):
 
-    FirstName = StringField("Voornaam: ", [validators.required()])
-    LastName = StringField("Achternaam: ", [validators.required()])
-    Email = StringField("Email address: ", validators=[DataRequired(), Email()])
-    Telephone = IntegerField("Telefoonnummer: ", [validators.required()])
-    Description = StringField("Opmerkingen: ", [validators.required()])
-    Dates = StringField("Op welk datum zou u willen spelen?: ", [validators.required()])
+    FirstName = StringField("Voornaam: ", validators=[DataRequired()])
+    LastName = StringField("Achternaam: ", validators=[DataRequired()])
+    Email = StringField("Email address: ", validators=[DataRequired()])
+    Telephone = IntegerField("Telefoonnummer: ", validators=[DataRequired()])
+    Description = StringField("Opmerkingen: ", validators=[DataRequired()])
+    Dates = StringField("Op welk datum zou u willen spelen?: ", validators=[DataRequired()])
     Locations = SelectMultipleField(
         "Locations: ", choices=[("Amsterdam"), ("Rotterdam"), ("Den Haag")]
     )
