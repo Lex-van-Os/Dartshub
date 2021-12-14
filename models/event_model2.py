@@ -1,5 +1,6 @@
 # moduls to create the model
 from config import db
+from models import location_model
 """
 How to add new migrations? Via Terminal
 
@@ -22,6 +23,8 @@ class EventAgenda(db.Model):
     time = db.Column(db.Text, unique=False, nullable=False)
     desc = db.Column(db.String(248), unique=False, nullable=True)
     age = db.Column(db.Integer, unique=False, nullable=False)
+    locationID = db.Column(db.Integer, db.ForeignKey('location.id'), nullable=False)
+    user = db.relationship('Location', backref=db.backref('events_agenda'), lazy=True)
 
     def __init__(self, name="", date="", time="", desc="", age=""):
         self.name = name
