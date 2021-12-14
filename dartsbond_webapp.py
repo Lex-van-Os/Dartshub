@@ -7,4 +7,4 @@ if __name__ == "__main__":
     #         port=500,
     #         debug=True,
     #         ssl_context=('cert.pem', 'key.pem'))
-    app.run(host='127.0.0.1', port=500, debug=True)
+    app.run(host='127.0.0.1', port=5000, debug=True)

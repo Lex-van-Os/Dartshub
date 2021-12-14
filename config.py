@@ -7,6 +7,7 @@ from flask_cors import CORS
 from flask_login import LoginManager, login_manager
 from flask_bcrypt import Bcrypt
 from flask_dance.contrib.google import make_google_blueprint
+from flask_recaptcha import ReCaptcha
 import os
 
 # LoginManager implementation
@@ -30,6 +31,16 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(
 
 # track db changes, can be turned on but it's resources intensive... so for now please let it be False
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+# ReCAPTCHA config
+app.config["RECAPTCHA_PUBLIC_KEY"] = '6LfBFaAdAAAAAMKUj4cgj_i4YtfD_2PxaOMi8_9e'
+app.config[
+    "RECAPTCHA_PRIVATE_KEY"] = '6LfBFaAdAAAAAPU6efQZziZ-We7Xnyca0jWG_MDa'
+app.config["TESTING"] = False
+
+recaptcha = ReCaptcha(app=app)
+recaptcha = ReCaptcha()
+recaptcha.init_app(app)
 
 # CORS for AJAX calls
 cors_user_api = CORS(
@@ -62,7 +73,7 @@ blueprint = make_google_blueprint(
     client_secret='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',
     offline=True,
     scope=['profile', 'email'],
-)
+    redirect_to="welcome_google")
 app.register_blueprint(blueprint, url_prefix='/login')
 # Google login
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = '1'

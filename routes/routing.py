@@ -3,7 +3,7 @@ from config import app, db, bcrypt, login_manager
 from models.user import User
 from forms.login_form import LoginForm, RegisterForm
 from flask_login import login_required, login_user, logout_user
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash, session
 from flask_dance.contrib.google import google
 
 
@@ -28,6 +28,11 @@ def form():
 @app.route("/logout")
 @login_required
 def logout():
+
+    if google.authorized:
+        session.clear()
+        return redirect('/agenda')
+
     logout_user()
     flash("U bent uitgelogt!")
     return redirect(url_for("login"))
@@ -42,6 +47,10 @@ def login():
         assert resp.ok, resp.text
         email = resp.json()['email']
         user_google = User.query.filter_by(email=email).first()
+        if user_google is None:
+            user_google = User(email=email)
+            db.session.add(user_google)
+            db.session.commit()
 
         login_user(user_google)
 
