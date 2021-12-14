@@ -1,4 +1,4 @@
-}
+
 * {
   box-sizing: border-box;
 }
@@ -7,6 +7,10 @@ ul {
 }
 body {
   font-family: Verdana, sans-serif;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 .month {
@@ -107,44 +111,12 @@ body {
   justify-content: space-between;
 }
 
-.nav_item_1:hover {
-  color: blue;
+.nav_item {
+  text-decoration: none;
+  color: black;
 }
-
-.nav_item_1:hover .drop_cont {
-  display: block;
-}
-
-.nav_item_2:hover {
-  color: blue;
-}
-
-.nav_item_2:hover .drop_cont {
-  display: block;
-}
-
-.nav_item_3:hover {
-  color: blue;
-}
-
-.nav_item_4:hover {
-  color: blue;
-}
-
-.nav_item_5:hover {
-  color: blue;
-}
-
-.nav_item_6:hover {
-  color: blue;
-}
-
-.nav_item_7:hover {
-  color: blue;
-}
-
-.nav_item_8:hover {
-  color: blue;
+.nav_item:hover {
+  color: red;
 }
 
 .drop_cont {
@@ -171,7 +143,8 @@ body {
   gap: 2.5em;
 }
 
-.content {
+#content {
+  padding-top: 5%;
 }
 
 .widgets {
@@ -188,6 +161,44 @@ body {
   color: rgb(255, 6, 6);
 }
 
+.participate_buttons {
+  display: flex;
+}
+
+.participate {
+  border:rgb(255, 6, 6)
+}
+
+.register {
+  border:rgb(255, 6, 6)
+}
+
+#button_container {
+  max-width: 500px !important; 
+}
+
+.event_title {
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.event_status {
+  padding-top: 7.5%;
+}
+
+.content_body {
+  display: flex;
+  justify-content: start;
+  gap: 10%;
+}
+
+.return_events {
+  color: black;
+}
+
+.nav_temp {
+  color: grey;
+}
 /* button */
 .btn{ /* this overwrites the bootstrap .btn class */
   border-radius: 0%;

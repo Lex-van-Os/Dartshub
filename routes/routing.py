@@ -34,3 +34,7 @@ def form():
 
     # The form.html web page needs the backend to get the data from the form submitted
     # to be displayed to the user by sending them an email
+
+@app.route("/event/location/detail")
+def location_detail():
+    return render_template("event/event_detail.html.jinja")
