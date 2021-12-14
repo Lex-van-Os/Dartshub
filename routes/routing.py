@@ -21,11 +21,6 @@ def agenda():
     return render_template("agenda.html.jinja")
 
 
-@app.route("/event/create", methods=['GET', 'POST'])
-def form():
-    return render_template("event/event_create.html.jinja")
-
-
 # Loading the details page based on a specific id given to the page
 @app.route("/event/details/<id>")
 def details(id):
@@ -35,6 +30,11 @@ def details(id):
 @app.route("/edit-event")
 def edit_event():
     return render_template("event/event_edit.html.jinja")
+
+
+@app.route("/create-event", methods=['GET', 'POST'])
+def form():
+    return render_template("event/event_create.html.jinja")
 
 
 @app.route("/logout")
