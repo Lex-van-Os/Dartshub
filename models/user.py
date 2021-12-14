@@ -22,3 +22,11 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(64), index=True, unique=True)
     username = db.Column(db.String(50), unique=True)
     password = db.Column(db.String(128))
+    
+    def json(self):
+        return {
+            "id" : self.id,
+            "email" : self.email,
+            "username" : self.username,
+            "password" : self.password
+        }
