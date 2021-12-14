@@ -18,7 +18,7 @@
     />
 
     <!-- our custom css -->
-    <link rel="stylesheet" href="static/styles/style.css" />
+    <link rel="stylesheet" href="/static/styles/style.css" />
 
     <title>{% block title %}{% endblock %} - Dartsbond Almere</title>
     {% endblock %}
@@ -36,26 +36,22 @@
           </div>
           <nav>
             <ul class="nav_menu">
-              <li class="nav_item_1">
-                <a>DBA</a>
-                <ul class="drop_cont">
-                  <li>test</li>
-                  <li>test2</li>
-                  <li>test3</li>
-                </ul>
+              <li>
+                <a class="nav_item" href="{{url_for('index')}}">Home</a>
               </li>
-              <li class="nav_item_2">
-                <a>Info</a>
-                <ul class="drop_cont">
-                  test
-                </ul>
+              <li>
+                <a class="nav_item" href="{{url_for('agenda')}}">Agenda</a>
               </li>
-              <li class="nav_item_3"><a>Competitie</a></li>
-              <li class="nav_item_4"><a>Beker</a></li>
-              <li class="nav_item_5"><a>Ranking</a></li>
-              <li class="nav_item_6"><a>Jeugd</a></li>
-              <li class="nav_item_7"><a>LaCo</a></li>
-              <li class="nav_item_8"><a>Kampioenen</a></li>
+              <li>
+                <a class="nav_item" href="{{url_for('form')}}">Create Event</a>
+              </li>
+              <li>
+                <a class="nav_item" href="{{url_for('location_detail')}}">Locatie Details</a>
+              </li>
+              <li><a class="nav_temp">Ranking</a></li>
+              <li><a class="nav_temp">Jeugd</a></li>
+              <li><a class="nav_temp">LaCo</a></li>
+              <li><a class="nav_temp">Kampioenen</a></li>
             </ul>
           </nav>
           <div class="img_cont">

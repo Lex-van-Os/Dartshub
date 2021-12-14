@@ -11,7 +11,6 @@ from flask_dance.contrib.google import google
 @app.route("/")
 @app.route("/home")
 def index():
-
     return render_template('home.html.jinja')
 
 
@@ -20,7 +19,12 @@ def agenda():
     return render_template("agenda.html.jinja")
 
 
-@app.route("/form")
+@app.route("/edit-event")
+def edit_event():
+    return render_template("event/event_edit.html.jinja")
+
+
+@app.route("/create-event", methods=['GET', 'POST'])
 def form():
     return render_template("form.html")
 
@@ -112,6 +116,11 @@ def welcome_google():
 @login_required
 def welcome_user():
     return render_template("welcome_user.html")
+
+
+@app.route("/event/location/detail")
+def location_detail():
+    return render_template("event/event_detail.html.jinja")
 
 
 @login_manager.user_loader
