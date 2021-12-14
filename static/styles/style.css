@@ -1,6 +1,4 @@
-:root {
-  --gap: 1em;
-}
+
 * {
   box-sizing: border-box;
 }
@@ -44,7 +42,6 @@ body::-webkit-scrollbar {
   padding-top: 10px;
 }
 
-
 .weekdays {
   margin: auto;
   padding: 10px 0;
@@ -57,8 +54,6 @@ body::-webkit-scrollbar {
   color: #666;
   text-align: center;
 }
-
-
 
 .days {
   padding: 10px 0;
@@ -204,3 +199,18 @@ body::-webkit-scrollbar {
 .nav_temp {
   color: grey;
 }
+/* button */
+.btn{ /* this overwrites the bootstrap .btn class */
+  border-radius: 0%;
+}
+
+.btn--dark{
+  background-color:#1a1a1a;
+  color:white;
+}
+
+.btn--dark:hover{
+  background-color:#0030ce;
+  color: white;
+}
+/* button end */
