@@ -37,6 +37,7 @@ class EventAgenda(db.Model):
     def json(self):
 
         return {
+            "id": self.id,
             "name": self.name,
             "date": self.date,
             "time": self.time,
