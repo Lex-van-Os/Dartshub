@@ -11,6 +11,10 @@ body {
   font-family: Verdana, sans-serif;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 .month {
   margin: auto;
   padding: 80px 25px;
@@ -112,44 +116,12 @@ body {
   justify-content: space-between;
 }
 
-.nav_item_1:hover {
-  color: blue;
+.nav_item {
+  text-decoration: none;
+  color: black;
 }
-
-.nav_item_1:hover .drop_cont {
-  display: block;
-}
-
-.nav_item_2:hover {
-  color: blue;
-}
-
-.nav_item_2:hover .drop_cont {
-  display: block;
-}
-
-.nav_item_3:hover {
-  color: blue;
-}
-
-.nav_item_4:hover {
-  color: blue;
-}
-
-.nav_item_5:hover {
-  color: blue;
-}
-
-.nav_item_6:hover {
-  color: blue;
-}
-
-.nav_item_7:hover {
-  color: blue;
-}
-
-.nav_item_8:hover {
-  color: blue;
+.nav_item:hover {
+  color: red;
 }
 
 .drop_cont {
@@ -227,4 +199,8 @@ body {
 
 .return_events {
   color: black;
+}
+
+.nav_temp {
+  color: grey;
 }
