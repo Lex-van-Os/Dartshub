@@ -2,9 +2,10 @@ from config import api
 from controller.event_api_controller import (
     RestEvents,
     RestEventsTwee,
-    UserAPI,
     AdminAPI,
 )
+from controller.location_api_controller import RestLocation
+from controller.locationOwner_api_controller import RestLocationOwner
 
 ################################
 """
@@ -29,11 +30,11 @@ api.add_resource(
 
 ################################
 
-# UserAPI URLs "<string:name> will be later replace by some data from the forms, for now online testing and developing"
+# LocationAPI URLs "<string:owner_name> will be later replace by some data from the forms, for now online testing and developing"
 api.add_resource(
-    UserAPI,
-    "/api/v1/almere/user/<string:user_name>",
-    endpoint="user_name",
+    RestLocationOwner,
+    "/api/v2/almere/location/<string:owner_name>",
+    endpoint="owner_name"
 )
 
 # AdminAPI URLs "<string:admin_name> will be later replace by some data from the forms, for now online testing and developing"
@@ -41,4 +42,11 @@ api.add_resource(
     AdminAPI,
     "/api/v1/almere/admin/<string:admin_name>",
     endpoint="admin_name",
+)
+
+# LocationAPI URLs "<string:location_name> will be later replace by some data from the forms, for now online testing and developing"
+api.add_resource(
+    RestLocation,
+    "/api/v2/almere/location/<string:location_name>",
+    endpoint="location_name"
 )
