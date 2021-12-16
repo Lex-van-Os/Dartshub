@@ -28,6 +28,8 @@ def details(id):
     eventsAPI = RestEventsTwee()
     event = eventsAPI.get(id) # Getting the event based on id
     return render_template("event/event_detail.html.jinja", event=event) # Passing the event so that event data can be dynamically loaded in jinja
+
+
 # http://127.0.0.1:5000/event/event_create
 @app.route("/event/event_create")
 def event_create():
@@ -160,9 +162,12 @@ def welcome_user():
     return render_template("welcome_user.html")
 
 
-@app.route("/events/location/detail")
-def location_detail():
-    return render_template("event/event_detail.html.jinja")
+# Seeing how location details uses the same location as event detais, the same functionality for event details has been implemented for location details to fix missing functionality
+@app.route("/events/location/detail/<id>")
+def location_detail(id):
+    eventsAPI = RestEventsTwee()
+    event = eventsAPI.get(id) # Getting the event based on id
+    return render_template("event/event_detail.html.jinja", event=event) # Passing the event so that event data can be dynamically loaded in jinja
 
 @app.route("/events")
 def event():
