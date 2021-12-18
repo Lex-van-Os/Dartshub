@@ -4,41 +4,79 @@
 
 {% block content %}
 
-    <h1><span>Nieuw Evenement</span></h1>
+<h1><span>Nieuw Evenement</span></h1>
 
-{# form action = stay on the same page #}
-{# event form = we need to 'post' the data from this page, then we can get the information and display the 'details' #}
+{# form action = stay on the same page #} {# event form = we need to 'post' the
+data from this page, then we can get the information and display the 'details'
+#}
 
-    <form action="#" method="POST"
-        onsubmit="alert('Nieuw Evenement Aangemaakt!'); return false">
+<form
+  action="#"
+  method="POST"
+  onsubmit="alert('Nieuw Evenement Aangemaakt!'); return false"
+  class="form"
+>
+  <div class="form-group pb-4">
+    <input type="text" name="event" placeholder="Naam Evenement: " /
+    class="form-control">
+  </div>
 
-        <p>Naam Evenement: <input type="text" name="event"/></p>
-        <p>Datum Evenement: <input type="text" name="date"/></p>
-        <p><div class="input-group mb-3">
-            <label class="input-group-text" for="inputGroupSelect01">Locatie:</label>
-            <select class="form-select" id="inputGroupSelect01">
-                <option selected>Kies...</option>
-                <option value="1">Amsterdam</option>
-                <option value="2">Rotterdam</option>
-                <option value="3">Den Haag</option>
-            </select>
-            </div>
-        <p>Tijd: <input type="text" name="time"/></p>
-        <p>Event Categorie: <input type="text" name="event_category"/></p>
-        <p>Telefoon: <input type="text" name="phone_number"/></p>
-        <p>E-mail: <input type="text" name="email"/></p>
-        <p><input type="submit" value="submit"/></p>
-        Naam Evenement: <input type="text" name="event"><br><br>
-        Datum Evenement: <input type="text" name="date"><br><br>
-        Categorie Evenement: <input type="text" name="categorie"><br><br>
-        Locatie Evenement: <input type="text" name="location"><br><br>
-        Naam Eigenaar: <input type="text" name="naam"><br><br>
-        Telefoon: <input type="text" name="telefoon"><br><br>
-        E-mail: <input type="text" name="email"><br><br>
+  <div class="form-group pb-4">
+    <input
+      type="date"
+      name="date"
+      placeholder="Datum Evenement: "
+      class="form-control"
+    />
+  </div>
 
-        <input type="submit" value="submit" class="btn btn--dark">
-{% endblock content %}
+  <div class="input-group mb-3">
+    <label class="input-group-text" for="inputGroupSelect01">Locatie:</label>
+    <select class="form-select" id="inputGroupSelect01">
+      <option selected>Kies...</option>
+      <option value="1">Amsterdam</option>
+      <option value="2">Rotterdam</option>
+      <option value="3">Den Haag</option>
+    </select>
+  </div>
 
-<script>
-// Code for setting up the form with the right data. WIP
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <div class="form-group pb-4">
+    <label for="time">Tijd</label>
+    <input type="time" name="time" placeholder="Tijd: " />
+  </div>
+
+  <div class="form-group pb-4">
+    <input
+      type="text"
+      name="event_category"
+      placeholder="Event Categorie: "
+      class="form-control"
+    />
+  </div>
+
+  <div class="form-group pb-4">
+    <input
+      type="text"
+      name="phone_number"
+      placeholder="Telefoon: "
+      class="form-control"
+    />
+  </div>
+
+  <div class="form-group pb-4">
+    <input
+      type="text"
+      name="email"
+      placeholder="E-mail: "
+      class="form-control"
+    />
+  </div>
+
+  <div class="form-group pb-4">
+    <input type="submit" value="Opslaan" class="btn btn--dark" />
+  </div>
+
+  {# // Code for setting up the form with the right data. #} {#
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  #} {% endblock content %}
+</form>

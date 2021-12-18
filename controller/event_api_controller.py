@@ -1,7 +1,6 @@
 # modules for the rest api classes, model is imported to make connection with the sqlite tables and databases
 from config import db
 from models.event_model import Event
-from models.event_model import Event
 from datetime import datetime
 from sqlalchemy import exc
 from flask_restful import Resource, reqparse
@@ -72,13 +71,11 @@ class RestEvents(Resource):
 
 # trying to create the full functionality for the rest API
 class RestEventsTwee(Resource):
-    def get(self, name):
-        name_extra_params = name_pars.parse_args()
-        event = Event.query.filter_by(name=name,
-                                      date=name_extra_params["date"],
-                                      time=name_extra_params["time"],
-                                      desc=name_extra_params["desc"],
-                                      age=name_extra_params["age"]).first()
+
+
+    # Get event has been refactored to get an event based on id. This way, details of specific events can be loaded in
+    def get(self, id):
+        event = Event.query.get(id)
 
         if event:
             return event.json()

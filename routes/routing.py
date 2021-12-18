@@ -1,3 +1,5 @@
+from config import app
+from controller.event_api_controller import RestEventsTwee
 from config import app, db, bcrypt, login_manager
 
 # from models.admin import AdminUsers
@@ -18,6 +20,14 @@ def index():
 @app.route("/agenda")
 def agenda():
     return render_template("agenda.html.jinja")
+
+
+# Loading the details page based on a specific id given to the page
+@app.route("/event/details/<id>")
+def details(id):
+    eventsAPI = RestEventsTwee()
+    event = eventsAPI.get(id) # Getting the event based on id
+    return render_template("event/event_detail.html.jinja", event=event) # Passing the event so that event data can be dynamically loaded in jinja
 
 
 # http://127.0.0.1:5000/event/event_create
@@ -61,11 +71,6 @@ def event_create():
 @app.route("/edit-event")
 def edit_event():
     return render_template("event/event_edit.html.jinja")
-
-
-@app.route("/create-event", methods=["GET", "POST"])
-def form():
-    return render_template("event/event_create.html.jinja")
 
 
 @app.route("/logout")
@@ -157,9 +162,12 @@ def welcome_user():
     return render_template("welcome_user.html")
 
 
-@app.route("/events/location/detail")
-def location_detail():
-    return render_template("event/event_detail.html.jinja")
+# Seeing how location details uses the same location as event detais, the same functionality for event details has been implemented for location details to fix missing functionality
+@app.route("/events/location/detail/<id>")
+def location_detail(id):
+    eventsAPI = RestEventsTwee()
+    event = eventsAPI.get(id) # Getting the event based on id
+    return render_template("event/event_detail.html.jinja", event=event) # Passing the event so that event data can be dynamically loaded in jinja
 
 @app.route("/events")
 def event():
