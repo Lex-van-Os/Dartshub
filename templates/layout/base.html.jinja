@@ -2,6 +2,9 @@
 <html lang="en">
   <head>
     {% block head %}
+
+    {# Dynamic base.html file, that dynamically gets loaded into all other HTML files #}
+
     <!-- Bootstraps Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -36,6 +39,8 @@
           </div>
           <nav>
             <ul class="nav_menu">
+
+              {# Defining of URL's through routing.py routes #}
               <li>
                 <a class="nav_item" href="{{url_for('index')}}">Home</a>
               </li>
@@ -63,6 +68,8 @@
           <div id="content">{% block content %}{% endblock %}</div>
         </div>
         <div class="col-md-4 overflow-hidden">
+
+          {# Loading of the widget sidebar with event information #}
           <section class="widgets">
             {% include "layout/widgets.html.jinja" %}
           </section>
