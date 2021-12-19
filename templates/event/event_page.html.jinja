@@ -1,9 +1,28 @@
  {% extends "layout/base.html.jinja" %}
 
- {% block title %} {# insert pagetitle #} {% endblock %}
+ {% block title %}Event Page{% endblock %}
 
 {% block content %}
-{{name.event}}
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"> {{event.name}}</h5>
+        <p class="card-text"> {{event.date}} </p>
+        <a href="details/<id>" class="btn btn--dark">Zie details</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">LaCo Ronde 5 Heren en Dames</h5>
+        <p class="card-text">11 december, 13:00 - 18:00</p>
+        <a href="youtube.com" class="btn btn--dark">Zie details</a>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
 
 {% block script %}
