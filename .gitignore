@@ -1,3 +1,5 @@
+# .gitignore file, serving to prevent unwanted files getting tracked when committing and pushing
+
 # ignore shell files to prevent dangerous shell commands
 *.sh
 
