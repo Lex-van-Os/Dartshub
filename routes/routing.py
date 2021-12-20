@@ -171,13 +171,9 @@ def location_detail(id):
 
 @app.route("/event")
 def event():
-    return render_template("/event/event_page.html.jinja", event = event)
-
-@app.route("/event/<id>")
-def event_id(id):
     eventsAPI = RestEventsTwee()
-    event = eventsAPI.get(id) # Getting the event based on id
-    return render_template("/event/event_id.html.jinja", event = event)
+    events = eventsAPI.getallevents()
+    return render_template("/event/event_page.html.jinja", events=events)
 
 @login_manager.user_loader
 def load_user(user_id):
