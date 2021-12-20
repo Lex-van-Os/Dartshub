@@ -2,6 +2,7 @@
 from config import db
 from models.event_model import Event
 from flask_restful import Resource, reqparse
+import datetime
 
 name_pars = reqparse.RequestParser()
 name_pars.add_argument("date",
@@ -76,7 +77,7 @@ class RestEventsTwee(Resource):
         if events:
             for event in events:
                 event = event.json()
-            print(events)
+            
             return events
         else:
             return {

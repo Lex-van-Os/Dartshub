@@ -13,13 +13,17 @@ from flask_dance.contrib.google import google
 @app.route("/")
 @app.route("/home")
 def index():
-    return render_template("home.html.jinja")
+    eventsAPI = RestEventsTwee()
+    events = eventsAPI.getallevents()
+    return render_template("home.html.jinja", events=events)
 
 
 # http://127.0.0.1:5000/agenda
 @app.route("/agenda")
 def agenda():
-    return render_template("agenda.html.jinja")
+    eventsAPI = RestEventsTwee()
+    events = eventsAPI.getallevents()
+    return render_template("agenda.html.jinja", events=events)
 
 
 # Loading the details page based on a specific id given to the page
