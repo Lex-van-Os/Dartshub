@@ -34,23 +34,9 @@
               de Dartsbond voor Flevoland en omstreken
             </div>
           </div>
-          <nav>
-            <ul class="nav_menu">
-              <li>
-                <a class="nav_item" href="{{url_for('index')}}">Home</a>
-              </li>
-              <li>
-                <a class="nav_item" href="{{url_for('agenda')}}">Agenda</a>
-              </li>
-              <li>
-                <a class="nav_item" href="{{url_for('event_create')}}">Create Event</a>
-              </li>
-              <li>
-                <a class="nav_item" href="{{url_for('location_detail', id=1)}}">Locatie Details</a>
-              </li>
-              <li><a class="nav_item" href="{{url_for('event')}}">Evenementen</a></li>
-            </ul>
-          </nav>
+
+         {% include 'layout/nav.html.jinja' %}
+
           <div class="img_cont">
             <img class="banner" src="/static/img/banner.jpg" />
           </div>
