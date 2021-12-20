@@ -1,3 +1,6 @@
+# ignore shell files to prevent dangerous shell commands
+*.sh
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
