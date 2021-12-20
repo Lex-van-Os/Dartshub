@@ -15,13 +15,17 @@ from flask_dance.contrib.google import google
 @app.route("/")
 @app.route("/home")
 def index():
-    return render_template("home.html.jinja")
+    eventsAPI = RestEvents()
+    events = eventsAPI.getallevents()
+    return render_template("home.html.jinja", events=events)
 
 
 # http://127.0.0.1:5000/agenda
 @app.route("/agenda")
 def agenda():
-    return render_template("agenda.html.jinja")
+    eventsAPI = RestEvents()
+    events = eventsAPI.getallevents()
+    return render_template("agenda.html.jinja", events=events)
 
 
 # Loading the details page based on a specific id given to the page
@@ -165,9 +169,15 @@ def location_detail(id):
 
 @app.route("/events")
 def event():
-    return render_template("events.html.jinja")
+    eventsAPI = RestEvents()
+    events = eventsAPI.getallevents()
+    return render_template("/event/event_page.html.jinja", events=events)
 
 
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
+#@app.route("/event")
+#def event_page():
+
