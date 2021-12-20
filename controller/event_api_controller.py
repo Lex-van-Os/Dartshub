@@ -76,7 +76,7 @@ class RestEventsTwee(Resource):
         if events:
             for event in events:
                 event = event.json()
-            print(events)
+            
             return events
         else:
             return {
