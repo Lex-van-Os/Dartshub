@@ -11,10 +11,11 @@ Update the DB: flask db upgrade
 
 For help: flask db --help
 
-BELANGRIJK: CHRIS IK HEB JE TABLE EEN BEETJE AANGEPAST ANDERS FUNCTIONEERT HIJ NIET MET DE API
 """
 
 
+# Model for the location owners.
+# Defined data in this model, is automatically communicated to the database in the form of table data, done through SQL Alchemy
 class User(db.Model, UserMixin):
 
     __tablename__ = 'users'

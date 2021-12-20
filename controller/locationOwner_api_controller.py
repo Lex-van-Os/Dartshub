@@ -2,6 +2,7 @@ from config import db
 from models import user
 from flask_restful import Resource, reqparse
 
+# Defining of form validation through RequestParser
 name_pars = reqparse.RequestParser()
 name_pars.add_argument(
     "email",
@@ -16,9 +17,13 @@ name_pars.add_argument(
     required=True
 )
 
+
+# LocationOwner API for the location owners
 class RestLocationOwner(Resource):
+
+    # Getting a location based on name and other extra parameters
     def get(self, name):
-        name_extra_params = name_pars.parse_args()
+        name_extra_params = name_pars.parse_args() # Defining of extra parameters through parse_args() so data doesn't have to be passed directly through an URL
         current_user = user.query.filter_by(
             name=name,
             email=name_extra_params['email'],
@@ -33,6 +38,8 @@ class RestLocationOwner(Resource):
                 "Resource": None,
             }, 404
         
+
+    # Adding a location owner to the database, making use of the same parse_args()
     def post(self, name):
         name_extra_params = name_pars.parse_args()
         current_user = user.query.filter_by(
@@ -43,6 +50,7 @@ class RestLocationOwner(Resource):
         db.session.add(current_user)
         db.session.commit()
         
+        # Parsing the added location owner data to JSON, returning it and returning with it a status OK message
         if current_user:
             return current_user.json(), 200
         else:
@@ -56,12 +64,14 @@ class RestLocationOwner(Resource):
     def delete(self, name):
         current_user = user.query.filter_by(name=name).first()
         
+        # Returning 404 incase a given location owner cannot be retrieved from the database
         if current_user == None:
             return {
                 "Note": "Probaly already deleted or not found",
                 "Status-code": "404",
             }, 404
 
+        # Deleting a location owner and returning a OK status message
         else:
             db.session.delete(current_user)
             db.session.commit()

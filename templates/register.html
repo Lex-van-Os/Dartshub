@@ -1,6 +1,9 @@
 {% extends "layout/base.html.jinja" %}
 {% block content %}
+    {# User registration form, making use of dynamic routing fields, returned in the routing for the register page #}
+
     <form method="post">
+        {# Validation errors are set-up, standard hidden and show up when incorrectly entering form input #}
         {{form.hidden_tag()}}
         <br>
         {{form.email.label}} {{form.email()}}<br>
