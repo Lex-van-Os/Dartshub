@@ -1,8 +1,6 @@
 # modules for the rest api classes, model is imported to make connection with the sqlite tables and databases
 from config import db
 from models.event_model import Event
-from datetime import datetime
-from sqlalchemy import exc
 from flask_restful import Resource, reqparse
 
 name_pars = reqparse.RequestParser()
@@ -72,6 +70,20 @@ class RestEvents(Resource):
 # trying to create the full functionality for the rest API
 class RestEventsTwee(Resource):
 
+    def getallevents(self):
+        events = Event.query.all()
+
+        if events:
+            for event in events:
+                event = event.json()
+            
+            return events
+        else:
+            return {
+                "Note": "Did not find resource(s)",
+                "Status": "404",
+                "Resource": None,
+            }, 404
 
     # Get event has been refactored to get an event based on id. This way, details of specific events can be loaded in
     def get(self, id):
