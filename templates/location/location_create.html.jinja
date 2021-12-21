@@ -1,78 +1,66 @@
 {% extends "layout/base.html.jinja" %}
 
-<title>{% block title %}Create New Event{% endblock %}</title>
+<title>{% block title %}Create New Location{% endblock %}</title>
 
 {% block content %}
 
-<h1 class="mb-4">Nieuw Evenement</h1>
+<h1 class="mb-4">Nieuwe Locatie</h1>
 
 {# form action = stay on the same page #} {# event form = we need to 'post' the
 data from this page, then we can get the information and display the 'details'
 #}
 
   <div class="form-group pb-4">
-    <input id="event_name" type="text" name="event" placeholder="Naam Evenement: " /
+    <input id="location_name" type="text" name="name" placeholder="Naam Location: " /
     class="form-control">
   </div>
 
   <div class="form-group pb-4">
     <input
-      id="event_date"
-      type="date"
-      name="date"
-      placeholder="Datum Evenement: "
+      id="location_city"
+      type="text"
+      name="city"
+      placeholder="Stad: "
       class="form-control"
     />
   </div>
 
-  <div class="input-group mb-3">
-    <label class="input-group-text" for="inputGroupSelect01">Locatie:</label>
-    <select class="form-select" id="inputGroupSelect01">
-      <option selected>Kies...</option>
-      <option value="1">Amsterdam</option>
-      <option value="2">Rotterdam</option>
-      <option value="3">Den Haag</option>
-    </select>
-  </div>
-
-  <div class="form-group pb-4">
-    <label for="time">Tijd</label>
-    <input id="event_time" type="time" name="time" placeholder="Tijd: " />
-  </div>
+    <div class="form-group pb-4">
+        <input
+        id="location_adress"
+        type="text"
+        name="adress"
+        placeholder="Adres: "
+        class="form-control"
+        />
+    </div>
 
   <div class="form-group pb-4">
     <input
+      id="location_zipcode"
       type="text"
-      name="event_category"
-      placeholder="Event Categorie: "
-      class="form-control"
-    />
-  </div>
-
-  <div class="form-group pb-4">
-    <input
-      id="event_desc"
-      type="text"
-      name="desc"
-      placeholder="Beschrijving: "
+      name="zipcode"
+      placeholder="Postcode: "
       class="form-control"
     />
   </div>
 
   <div class="form-group pb-4">
     <input
+      id="location_phonenumber"
       type="text"
-      name="phone_number"
-      placeholder="Telefoon: "
+      name="phonenumber"
+      placeholder="Telefoonummer: "
       class="form-control"
     />
   </div>
 
   <div class="form-group pb-4">
     <input
+      id="location_link"
       type="text"
-      name="email"
-      placeholder="E-mail: "
+      name="link"
+      placeholder="Link: "
       class="form-control"
     />
   </div>
@@ -82,7 +70,7 @@ data from this page, then we can get the information and display the 'details'
   </div>
 
 <script>
-  function post_succes() {
+  /*function post_succes() {
     alert("Evenement aangemaakt!");
     window.location.href = "/";
   };
@@ -103,7 +91,7 @@ data from this page, then we can get the information and display the 'details'
     };
 
     console.log(JSON.stringify(event_data))
-    
+
     $.ajax({
       type: "POST",
       url: "/api/v2/almere/events/" + event_name,
@@ -111,7 +99,7 @@ data from this page, then we can get the information and display the 'details'
       success: post_succes(),
       dataType: "JSON"
     });
-  });
+  });*/
 </script>
 
 {# // Code for setting up the form with the right data. #} {#

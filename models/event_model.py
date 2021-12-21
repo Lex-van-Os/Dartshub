@@ -1,4 +1,5 @@
 # moduls to create the model
+from sqlalchemy.orm import relationship
 from config import db
 from models import location_model
 """
@@ -10,10 +11,11 @@ Update the DB: flask db upgrade
 
 For help: flask db --help
 
-BELANGRIJK: CHRIS IK HEB JE TABLE EEN BEETJE AANGEPAST ANDERS FUNCTIONEERT HIJ NIET MET DE API
 """
 
 
+# Model for the events.
+# Defined data in this model, is automatically communicated to the database in the form of table data, done through SQL Alchemy
 class Event(db.Model):
 
     __tablename__ = "events"
@@ -24,15 +26,10 @@ class Event(db.Model):
     desc = db.Column(db.String(248), unique=False, nullable=True)
     age = db.Column(db.Integer, unique=False, nullable=False)
     locationID = db.Column(db.Integer, db.ForeignKey('location.id'), nullable=False)
-    user = db.relationship('Location', backref=db.backref('events_agenda'), lazy=True)
+    location = relationship('Location', backref='events')
 
-    def __init__(self, name="", date="", time="", desc="", age=""):
-        self.name = name
-        self.date = date
-        self.time = time
-        self.desc = desc
-        self.age = age
 
+    # Function for parsing event data to JSON format, for returning to the front-end
     def json(self):
 
         return {

@@ -1,5 +1,6 @@
 {% extends "layout/base.html.jinja" %}
 {% block content %}
+    {# Login html file, making use of dynamically loaded form information through routing arguments #}
     <form method="post">
         {{form.hidden_tag()}}
         {{form.email.label}}{{form.email()}}

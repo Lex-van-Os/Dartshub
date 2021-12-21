@@ -1,4 +1,4 @@
-{% extends "layout/base.html.jinja" %} 
+{% extends "layout/base.html.jinja" %}
 
 {% block title%}Event Details Page{% endblock %}
 
@@ -8,18 +8,18 @@
         <a class="return_events" href="{{url_for('event')}}">
             << Alle Evenementen
         </a>
-        <h6 class="event_status">Dit evenement is voorbij.</h6>
+        <h6 class="event_status">Dit evenement staat gepland.</h6>
         <hr class="hor_line">
-        <h1 class="event_title">LaCo Ronde 5 Heren en Dames</h1>
+        <h1 class="event_title">{{event.name}}</h1>
     </div>
 
     <div class="content_body">
         <div class="details">
             <div class="event-header">
-                <h1 class="event-name">Evenement: {{ event.name }}</h1>
                 <h3>Evenement gegevens</h3>
             </div>
 
+            {# Dynamically loaded event API in the event details  #}
             <!-- Using the flask wtforms to display on FE and get the info from BE -->
             <div class="event-details">
                 <p> Datum: {{ event.date }} </p>
@@ -27,9 +27,11 @@
                 <p> Leeftijd: {{ event.age }} </p>
                 <p> Omschrijving: </p>
                 <p class="event-description">
-                    {{ event.desc }}    
+                    {{ event.desc }}
                 </p>
             </div>
+
+            {# Hard coded location information for the event #}
             <div class="location">
                 <h3>Locatie</h3>
                 <p>
@@ -46,6 +48,10 @@
     <div id="button_container" class="row align-items-center">
         <div class="col">
             <button type="button" class="btn btn--dark">Ik doe mee!</button>
+        </div>
+
+        <div class="col">
+            <button type="button" class="btn btn--dark" onclick="delete_event({{event.id}})">Verwijder evenement</button>
         </div>
     </div>
 
@@ -66,5 +72,25 @@
 {% endblock %}
 
 {% block script %}
-{# insert pagesprecific javascript here #}
+<script>
+
+    // Redirect when deleting event
+    function post_succes() {
+        alert("Evenement verwijderd!");
+        window.location.href = "/";
+    };
+
+    // Function for deleting event when clicking button
+    // Because the event API expects a string event_name value, id has been converted to string
+    function delete_event(event_id) {
+        console.log("Delete event!");
+        event_id = event_id.toString();
+        $.ajax({
+        type: "DELETE",
+        url: "/api/v2/almere/events/" + event_id,
+        success: post_succes(),
+        dataType: "JSON"
+        });
+    }
+</script>
 {% endblock %}
