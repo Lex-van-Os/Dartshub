@@ -8,7 +8,7 @@
         <a class="return_events" href="{{url_for('event')}}">
             << Alle Evenementen
         </a>
-        <h6 class="event_status">Dit evenement is voorbij.</h6>
+        <h6 class="event_status">Dit evenement staat gepland.</h6>
         <hr class="hor_line">
         <h1 class="event_title">{{event.name}}</h1>
     </div>
@@ -49,6 +49,10 @@
         <div class="col">
             <button type="button" class="btn btn--dark">Ik doe mee!</button>
         </div>
+
+        <div class="col">
+            <button type="button" class="btn btn--dark" onclick="delete_event({{event.id}})">Verwijder evenement</button>
+        </div>
     </div>
 
 <style>
@@ -68,5 +72,25 @@
 {% endblock %}
 
 {% block script %}
-{# insert pagesprecific javascript here #}
+<script>
+
+    // Redirect when deleting event
+    function post_succes() {
+        alert("Evenement verwijderd!");
+        window.location.href = "/";
+    };
+
+    // Function for deleting event when clicking button
+    // Because the event API expects a string event_name value, id has been converted to string
+    function delete_event(event_id) {
+        console.log("Delete event!");
+        event_id = event_id.toString();
+        $.ajax({
+        type: "DELETE",
+        url: "/api/v2/almere/events/" + event_id,
+        success: post_succes(),
+        dataType: "JSON"
+        });
+    }
+</script>
 {% endblock %}
