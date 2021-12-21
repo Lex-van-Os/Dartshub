@@ -49,7 +49,10 @@ def event_create():
     #      ]
     #     return redirect(request(url_for)"" = detail)
     # else:
-
+    
+@app.route("/location/location_create")
+def location_create():
+    return render_template("/location/location_create.html.jinja")
 
 @app.route("/edit-event")
 def edit_event():
