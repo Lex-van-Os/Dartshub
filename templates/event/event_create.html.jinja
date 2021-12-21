@@ -82,6 +82,11 @@ data from this page, then we can get the information and display the 'details'
   </div>
 
 <script>
+  function post_succes() {
+    alert("Evenement aangemaakt!");
+    window.location.href = "/";
+  };
+
   $('#submit_event').click(function() {
     var name = $("#event_name").val();
     var date = $("#event_date").val();
@@ -103,7 +108,7 @@ data from this page, then we can get the information and display the 'details'
       type: "POST",
       url: "/api/v2/almere/events/" + event_name,
       data: JSON.stringify(event_data),
-      success: document.location.href = "/",
+      success: post_succes(),
       dataType: "JSON"
     });
   });
