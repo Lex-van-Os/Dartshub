@@ -12,6 +12,11 @@
     <!-- Jquery -->
     <script src="/static/js/jquery-3.6.0.min.js"></script>
 
+    <!-- font import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
+
     <!-- Bootstrap CSS -->
 
     <link
@@ -31,17 +36,25 @@
     <div class="container">
       <div class="row">
         <header>
-          <div class="logo" style="padding-top: 1em">
-            <a class="title" href="#"> Dartsbondalmere.nl </a>
-            <div class="sub_title">
-              de Dartsbond voor Flevoland en omstreken
+          <div class="logo">
+            <a class="title" href="/"> Dartsbondalmere </a>
+          </div>
+          <div class="acc_container">
+            <div class="login_container">
+              <a class="mijn_account" href="{{url_for('login')}}">
+                Log in
+              </a>
+            </div>
+            <div class="reg_container">
+              <a class="mijn_account" href="{{url_for('register')}}">
+                Registreren
+              </a>
             </div>
           </div>
-
+          
           {% include 'layout/nav.html.jinja' %}
-
-          <div class="img_cont">
-            <img class="banner" src="/static/img/banner.jpg" />
+          <div class="banner_container">
+            <video class="banner" src="/static/banner/banner.mp4" type="video/mp4" loop autoplay muted></video>
           </div>
         </header>
       </div>

@@ -96,9 +96,13 @@ class RestEvents(Resource):
                 "Resource": None,
             }, 404
 
-    def delete(self, name):
 
-        event = Event.query.filter_by(name=name).first()
+    # Backend delete function works with id, but uses "name" as parameter, seeing how this is configured in urls_api.py
+    # Because of lack of time, this configuration hasn't been changed yet
+    def delete(self, name):
+        print("Event delete event")
+
+        event = Event.query.get(name) # Getting event based on name (id)
 
         # In case item does not exist, a 404 not found message is returned
         if event == None:
