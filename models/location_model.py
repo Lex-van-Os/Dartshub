@@ -1,6 +1,9 @@
 # moduls to create the model
 from config import db
 
+
+# Model for the event location.
+# Defined data in this model, is automatically communicated to the database in the form of table data, done through SQL Alchemy
 class Location(db.Model):
 
     __tablename__ = "location"
@@ -12,6 +15,17 @@ class Location(db.Model):
     phonenumber = db.Column(db.Integer, unique=False, nullable=False)
     link = db.Column(db.String(248), unique=False, nullable=False)
 
+
+    def __init__(self, name="", city="", adress="", zipcode="", phonenumber=None, link=""):
+        self.name = name
+        self.city = city
+        self.adress = adress
+        self.zipcode = zipcode
+        self.phonenumber = phonenumber
+        self.link = link
+
+
+    # Function for parsing location data to JSON format, for returning to the front-end
     def json(self):
 
         return {
@@ -23,6 +37,8 @@ class Location(db.Model):
             "link" : self.link
         }
 
+    # Function for creating a custom print message incase of printing a location instance
+    # Print is set up in JSON format, for better readability
     def __repr__(self):
         location = {
             "name" : self.name,

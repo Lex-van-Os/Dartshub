@@ -11,10 +11,11 @@ Update the DB: flask db upgrade
 
 For help: flask db --help
 
-BELANGRIJK: CHRIS IK HEB JE TABLE EEN BEETJE AANGEPAST ANDERS FUNCTIONEERT HIJ NIET MET DE API
 """
 
 
+# Model for the events.
+# Defined data in this model, is automatically communicated to the database in the form of table data, done through SQL Alchemy
 class Event(db.Model):
 
     __tablename__ = "events"
@@ -27,6 +28,8 @@ class Event(db.Model):
     locationID = db.Column(db.Integer, db.ForeignKey('location.id'), nullable=False)
     location = relationship('Location', backref='events')
 
+
+    # Function for parsing event data to JSON format, for returning to the front-end
     def json(self):
 
         return {

@@ -1,3 +1,8 @@
+:root {
+  --red-color: rgb(255, 6, 6);
+  --dark: #1a1a1a;
+  --light: white;
+}
 * {
   box-sizing: border-box;
 }
@@ -110,12 +115,25 @@ body::-webkit-scrollbar {
   justify-content: space-between;
 }
 
-.nav_item {
+.dropdown_item:hover,
+.dropdown-item:active,/*overwrite bootstrap*/
+.dropdown-link:active,/*overwrite bootstrap*/
+.dropdown_link:active,
+.dropdown_link:hover,
+.dropdown_link:focus,
+.dropdown_item:focus {
+  background-color: white;
+  color: var(--red-color);
+}
+
+.nav_item,
+.nav-link {
+  padding: 1em;
   text-decoration: none;
   color: black;
 }
 .nav_item:hover {
-  color: red;
+  color: var(--red-color);
 }
 
 .drop_cont {
@@ -143,7 +161,6 @@ body::-webkit-scrollbar {
 }
 
 #content {
-  padding-top: 5%;
 }
 
 .widgets {
@@ -157,7 +174,7 @@ body::-webkit-scrollbar {
 
 .widget {
   font-size: small;
-  color: rgb(255, 6, 6);
+  color: var(--red-color);
 }
 
 .participate_buttons {
@@ -165,11 +182,11 @@ body::-webkit-scrollbar {
 }
 
 .participate {
-  border: rgb(255, 6, 6);
+  border: var(--red-color);
 }
 
 .register {
-  border: rgb(255, 6, 6);
+  border: var(--red-color);
 }
 
 #button_container {
@@ -205,7 +222,7 @@ body::-webkit-scrollbar {
 }
 
 .btn--dark {
-  background-color: #1a1a1a;
+  background-color: var(--dark);
   color: white;
 }
 

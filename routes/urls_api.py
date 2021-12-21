@@ -1,7 +1,6 @@
 from config import api
 from controller.event_api_controller import (
     RestEvents,
-    RestEventsTwee,
     AdminAPI,
 )
 from controller.location_api_controller import RestLocation
@@ -17,14 +16,9 @@ Goodluck devs :)
 ################################
 
 # test API but later for CRUD "events"
-api.add_resource(
-    RestEvents,
-    "/api/v1/almere/events/<string:name>",
-    endpoint="name",
-)
 
 api.add_resource(
-    RestEventsTwee,
+    RestEvents,
     "/api/v2/almere/events/<string:name>",
 )
 

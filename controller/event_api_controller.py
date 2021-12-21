@@ -7,6 +7,7 @@ from flask import json, request
 
 from models.location_model import Location
 
+# Setting up of event validation through RequestParser
 name_pars = reqparse.RequestParser()
 name_pars.add_argument("date",
                        type=str,
@@ -28,51 +29,8 @@ name_pars.add_argument(
 )
 
 
-# create a resource, with all "well at least DEL, GET and POST" HTTP methods
-# this resource is connected with a API URL to function.
+# event API class for defining and using API methods
 class RestEvents(Resource):
-    def get(self, name):
-
-        event = Event.query.filter_by(name=name).first()
-
-        if event:
-            return event.json()
-        else:
-            return {
-                "Note": "Did not find resource(s)",
-                "Status": "404",
-                "Resource": None,
-            }, 404
-
-    def post(self, name):
-        print("post")
-
-        event = Event(name=name)
-        db.session.add(event)
-        db.session.commit()
-        events = Event.query.all()
-        print(events)
-
-        return event.json()
-
-    def delete(self, name):
-
-        event = Event.query.filter_by(name=name).first()
-
-        if event == None:
-            return {
-                "Note": "Probaly already deleted or not found",
-                "Status-code": "404",
-            }, 404
-
-        else:
-            db.session.delete(event)
-            db.session.commit()
-            return {'note': 'Succesfully deleted'}, 200
-
-
-# trying to create the full functionality for the rest API
-class RestEventsTwee(Resource):
 
     def getallevents(self):
         events = Event.query.all()
@@ -102,7 +60,9 @@ class RestEventsTwee(Resource):
                 "Resource": None,
             }, 404
 
+
     def post(self, name):
+        # Extra fields besides name, are parsed so that these parameters don't have to be included inside of a POST URL
         print("POST")
         # name_extra_params = name_pars.parse_args()
         # event = Event(name=name,
@@ -122,6 +82,7 @@ class RestEventsTwee(Resource):
         
         event = Event(name=event_name, date=event_date, time=event_time, desc=event_desc, age=event_age, locationID=location.id)
 
+        # Saving of item to the database and later returning a HTTP code message
         db.session.add(event)
         db.session.commit()
 
@@ -139,18 +100,21 @@ class RestEventsTwee(Resource):
 
         event = Event.query.filter_by(name=name).first()
 
+        # In case item does not exist, a 404 not found message is returned
         if event == None:
             return {
-                "Note": "Probaly already deleted or not found",
+                "Note": "Requested item could not be found",
                 "Status-code": "404",
             }, 404
 
         else:
+            # Deleting of item incase item has been found
             db.session.delete(event)
             db.session.commit()
             return {"note": "Succesfully deleted"}, 200
 
 
+# Admin API for the website administrator
 class AdminAPI(Resource):
     def get(self, admin_name):
 
@@ -169,6 +133,7 @@ class AdminAPI(Resource):
         return {"test": admin_name}
 
 
+# User API for the location owners
 class UserAPI(Resource):
     def get(self, user_name):
 
