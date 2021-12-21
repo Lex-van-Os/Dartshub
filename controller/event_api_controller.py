@@ -1,7 +1,11 @@
 # modules for the rest api classes, model is imported to make connection with the sqlite tables and databases
 from config import db
 from models.event_model import Event
+from models.location_model import Location
 from flask_restful import Resource, reqparse
+from flask import json, request
+
+from models.location_model import Location
 
 name_pars = reqparse.RequestParser()
 name_pars.add_argument("date",
@@ -100,12 +104,23 @@ class RestEventsTwee(Resource):
 
     def post(self, name):
         print("POST")
-        name_extra_params = name_pars.parse_args()
-        event = Event(name=name,
-                      date=name_extra_params["date"],
-                      time=name_extra_params["time"],
-                      desc=name_extra_params["desc"],
-                      age=name_extra_params["age"])
+        # name_extra_params = name_pars.parse_args()
+        # event = Event(name=name,
+        #               date=name_extra_params["date"],
+        #               time=name_extra_params["time"],
+        #               desc=name_extra_params["desc"],
+        #               age=name_extra_params["age"])
+        
+        json_data = request.get_json(force=True)
+        event_name = json_data['name']
+        event_date = json_data['date']
+        event_time = json_data['time']
+        event_desc = json_data['desc']
+        event_age = json_data['age']
+        
+        location = Location.query.get(1)
+        
+        event = Event(name=event_name, date=event_date, time=event_time, desc=event_desc, age=event_age, locationID=location.id)
 
         db.session.add(event)
         db.session.commit()
