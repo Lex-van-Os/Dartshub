@@ -1,13 +1,14 @@
-{% block content %}
-  {%for event in events%}
-    <h6 class= wigget_title><strong>{{event.name}}</strong></h6>
-    <p class= wigget_date> {{event.date}}</p>
-  {%endfor%}
-  <a class="return_events" href="{{url_for('event')}}"><< Alle Evenementen</a>
+{% block content %} {%for event in events%}
+<div class="card mt-2 mb-2">
+  <div class="card-body">
+    <h6 class="wigget_title text-capitalize">
+      <strong>{{ event.name }}</strong>
+    </h6>
+    <p class="wigget_date text-capitalize">{{ event.date }}</p>
+  </div>
+</div>
+{%endfor%}
+<a class="return_events" href="{{ url_for('event') }}"><< Alle Evenementen</a>
 
-
-{% endblock %}
-
-{% block script %}
-{# insert pagesprecific javascript here #}
-{% endblock %}
+{% endblock %} {% block script %} {# insert pagesprecific javascript here #} {%
+endblock %}
