@@ -117,16 +117,14 @@ body::-webkit-scrollbar {
 
 .logo {
   position: absolute;
-  padding-top: 1%;
-  padding-left: 5%;
+  padding-top: 1vw!important;
+  padding-left: 5vw;
   font-family: 'Raleway', sans-serif;
   text-decoration: none;
-
 }
 
 .title {
   text-decoration: none;
-  font-size: 3vw;
   color: black;
 }
 
@@ -136,13 +134,13 @@ body::-webkit-scrollbar {
 }
 
 .nav_menu {
-  padding-top: 30vw;
+  padding-top: 29vw;
   padding-left: 5vw;
   padding-right: 5vw;
   padding-bottom: 0vw;
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: 10vw;
+  grid-auto-columns: 17vw;
   justify-content: space-between;
 }
 
@@ -160,7 +158,7 @@ body::-webkit-scrollbar {
   vertical-align: text-bottom;
 }
 
-.test:hover > .nav_subitem{
+.test:focus-within > .nav_subitem{
   opacity: 1;
   padding-bottom: 10vw;
   transition: 500ms;
@@ -168,27 +166,30 @@ body::-webkit-scrollbar {
 
 .nav_subitem {
   padding-top: 7vw;
+  padding-left: 2vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 23vw;
   text-align: left;
   transform: translateY(-23vw);
-  width: 10%;
+  width: 17vw;
   position: absolute;
   background: linear-gradient( white, white, rgba(255, 255, 255, 0));
   opacity: 0;
   font-family: 'Raleway', sans-serif;
-  font-size: 1vw;
+}
+
+.nice_link {
+  text-decoration: none;
+  color: black;
 }
 
 .nav_subitem li {
   z-index:10;
-  font-size: 1.5vw;
 }
 
 .nav_item {
-  font-size: 1.5vw;
   text-decoration: none;
   color: white;
   font-family: 'Raleway', sans-serif;
@@ -204,6 +205,62 @@ body::-webkit-scrollbar {
   text-decoration: none;
   color: white;
   background-size: 100% 1px;
+}
+
+@media screen and (min-width: 769px) {
+  .title{
+    font-size: 30px;
+  }
+  .nav_item{
+    font-size: 22px;
+  }
+  .nav_subitem{
+    font-size: 19px;
+  }
+  header{
+    padding-bottom: 3vw;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .title{
+    font-size: 30px;
+  }
+  .nav_item{
+    font-size: 15px;
+  }
+  .nav_subitem{
+    font-size: 12px;
+    width: 18vw;
+  }
+  .nav_menu{
+    grid-auto-columns: 18vw;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .title{
+    font-size: 20px;
+  }
+  .nav_item{
+    font-size: 13px;
+  }
+  .nav_subitem{
+    font-size: 10px;
+    width: 23vw;
+  }
+  .nav_menu{
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0;
+    grid-auto-columns: 23vw;
+  }
+  .row{
+    padding: 0!important;
+  }  
+  .all_cont{
+    padding: 0 !important;
+  }
 }
 
 .drop_cont {
@@ -228,10 +285,6 @@ body::-webkit-scrollbar {
   display: flex;
   justify-content: space-between;
   gap: 2.5em;
-}
-
-#content {
-  padding-top: 5%;
 }
 
 .widgets {

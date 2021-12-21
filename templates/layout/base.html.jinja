@@ -38,23 +38,17 @@
           <nav>
             <ul class="nav_menu">
               <li class="test">
-                <ul class="nav_subitem"><li>test</li><li>test</li><li>test</li><li>test</li><li>test</li></ul>
                 <a class="nav_item" href="{{url_for('index')}}">Home</a>
               </li>
               <li class="test">
-                <ul class="nav_subitem"><li>test</li><li>test</li><li>test</li><li>test</li><li>test</li></ul>
                 <a class="nav_item" href="{{url_for('agenda')}}">Agenda</a>
               </li>
               <li class="test">
-                <ul class="nav_subitem"><li>test</li><li>test</li><li>test</li><li>test</li><li>test</li></ul>
-                <a class="nav_item" href="{{url_for('event_create')}}">Create Event</a>
+                <ul class="nav_subitem"><li><a class="nice_link" href="{{url_for('location_detail', id=1)}}">Details</a></li></ul>
+                <a class="nav_item" href="#">Locatie</a>
               </li>
               <li class="test">
-                <ul class="nav_subitem"><li>test</li><li>test</li><li>test</li><li>test</li><li>test</li></ul>
-                <a class="nav_item" href="{{url_for('location_detail', id=1)}}">Locatie Details</a>
-              </li>
-              <li class="test">
-                <ul class="nav_subitem"><li>test</li><li>test</li><li>test</li><li>test</li><li>test</li></ul>
+                <ul class="nav_subitem"><li><a class="nice_link" href="{{url_for('event_create')}}">Aanmaken</a></li></ul>
                 <a class="nav_item" href="#">Evenementen</a>
               </li>
             </ul>
