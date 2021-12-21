@@ -1,0 +1,107 @@
+{% extends "layout/base.html.jinja" %}
+
+<title>{% block title %}Create New Location{% endblock %}</title>
+
+{% block content %}
+
+<h1 class="mb-4">Nieuwe Locatie</h1>
+
+{# form action = stay on the same page #} {# event form = we need to 'post' the
+data from this page, then we can get the information and display the 'details'
+#}
+
+  <div class="form-group pb-4">
+    <input id="location_name" type="text" name="name" placeholder="Naam Location: " /
+    class="form-control">
+  </div>
+
+  <div class="form-group pb-4">
+    <input
+      id="location_city"
+      type="text"
+      name="city"
+      placeholder="Stad: "
+      class="form-control"
+    />
+  </div>
+
+    <div class="form-group pb-4">
+        <input
+        id="location_adress"
+        type="text"
+        name="adress"
+        placeholder="Adres: "
+        class="form-control"
+        />
+    </div>
+
+  <div class="form-group pb-4">
+    <input
+      id="location_zipcode"
+      type="text"
+      name="zipcode"
+      placeholder="Postcode: "
+      class="form-control"
+    />
+  </div>
+
+  <div class="form-group pb-4">
+    <input
+      id="location_phonenumber"
+      type="text"
+      name="phonenumber"
+      placeholder="Telefoonummer: "
+      class="form-control"
+    />
+  </div>
+
+  <div class="form-group pb-4">
+    <input
+      id="location_link"
+      type="text"
+      name="link"
+      placeholder="Link: "
+      class="form-control"
+    />
+  </div>
+
+  <div class="form-group pb-4">
+    <input id="submit_event" type="submit" value="Opslaan" class="btn btn--dark" />
+  </div>
+
+<script>
+  /*function post_succes() {
+    alert("Evenement aangemaakt!");
+    window.location.href = "/";
+  };
+
+  $('#submit_event').click(function() {
+    var name = $("#event_name").val();
+    var date = $("#event_date").val();
+    var time = $("#event_time").val();
+    var desc = $("#event_desc").val();
+    var age = 18
+
+    event_data = {
+      name,
+      date,
+      time,
+      desc,
+      age,
+    };
+
+    console.log(JSON.stringify(event_data))
+
+    $.ajax({
+      type: "POST",
+      url: "/api/v2/almere/events/" + event_name,
+      data: JSON.stringify(event_data),
+      success: post_succes(),
+      dataType: "JSON"
+    });
+  });*/
+</script>
+
+{# // Code for setting up the form with the right data. #} {#
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+#} {% endblock content %}
