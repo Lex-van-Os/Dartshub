@@ -36,8 +36,20 @@
     <div class="container">
       <div class="row">
         <header>
-          <div class="logo" style="padding-top: 1em">
-            <a class="title" href="#"> Dartsbondalmere </a>
+          <div class="logo">
+            <a class="title" href="/"> Dartsbondalmere </a>
+          </div>
+          <div class="acc_container">
+            <div class="login_container">
+              <a class="mijn_account" href="{{url_for('login')}}">
+                Log in
+              </a>
+            </div>
+            <div class="reg_container">
+              <a class="mijn_account" href="{{url_for('register')}}">
+                Registreren
+              </a>
+            </div>
           </div>
           <nav>
             <ul class="nav_menu">
@@ -48,11 +60,11 @@
                 <a class="nav_item" href="{{url_for('agenda')}}">Agenda</a>
               </li>
               <li class="test">
-                <ul class="nav_subitem"><li><a class="nice_link" href="#">Details</a></li></ul>
+                <ul class="nav_subitem"><li><a class="nice_link" href="#">Details</a></li><li><a class="nice_link" href="{{url_for('location_create')}}">Aanmaken</a></li></ul>
                 <a class="nav_item" href="#">Locatie</a>
               </li>
               <li class="test">
-                <ul class="nav_subitem"><li><a class="nice_link" href="{{url_for('event_create')}}">Aanmaken</a></li></ul>
+                <ul class="nav_subitem"><li><a class="nice_link" href="{{url_for('event')}}">Weergeven</a></li><li><li><a class="nice_link" href="{{url_for('event_create')}}">Aanmaken</a></li><li><a class="nice_link" href="{{url_for('edit_event')}}">Wijzigen</a></li></ul>
                 <a class="nav_item" href="#">Evenementen</a>
               </li>
             </ul>
