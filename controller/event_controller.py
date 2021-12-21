@@ -1,1 +1,2 @@
-# ik heb dit voor lex bewaard :)
+# Event controller for event related page specific functionality
+# Seeing how there currently isn't any page specific functionality that has to be handled using back-end Python, there is no functionality for this file (yet)

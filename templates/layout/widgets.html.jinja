@@ -1,12 +1,13 @@
 {% block content %}
   {%for event in events%}
-   
+
     <br/><br/>
     <h6 class= wigget_title><strong>{{event.name}}</strong></h6>
     <p class= wigget_date> {{event.date}}</p>
     <br/>
   {%endfor%}
   <a class="return_events" href="{{url_for('event')}}"><< Alle Evenementen</a>
+
 
 {% endblock %}
 

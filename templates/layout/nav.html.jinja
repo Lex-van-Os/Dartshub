@@ -1,0 +1,41 @@
+<nav>
+  <ul class="nav_menu">
+    <li>
+      <a class="nav_item" href="{{ url_for('index') }}">Home</a>
+    </li>
+    <li>
+      <a class="nav_item" href="{{ url_for('agenda') }}">Agenda</a>
+    </li>
+
+    <li>
+      <a class="nav_item" href="{{url_for('location_detail', id=1)}}"
+        >Locatie Details</a
+      >
+    </li>
+    <li class="nav-item dropdown dropdown_item">
+      <a
+        class="nav-link dropdown-toggle dropdown_link"
+        href="{{ url_for('event') }}"
+        id="navbarDropdown"
+        role="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+        style="padding: 0"
+      >
+        Evenementen
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <li>
+          <a class="dropdown-item nav_item" href="{{ url_for('event') }}"
+            >Alle evenementen</a
+          >
+        </li>
+        <li>
+          <a class="dropdown-item nav_item" href="{{ url_for('event_create') }}"
+            >Maak evenement aan</a
+          >
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>

@@ -1,4 +1,4 @@
-{% extends "layout/base.html.jinja" %} 
+{% extends "layout/base.html.jinja" %}
 
 {% block title%}Event Details Page{% endblock %}
 
@@ -19,6 +19,7 @@
                 <h3>Evenement gegevens</h3>
             </div>
 
+            {# Dynamically loaded event API in the event details  #}
             <!-- Using the flask wtforms to display on FE and get the info from BE -->
             <div class="event-details">
                 <p> Datum: {{ event.date }} </p>
@@ -26,9 +27,11 @@
                 <p> Leeftijd: {{ event.age }} </p>
                 <p> Omschrijving: </p>
                 <p class="event-description">
-                    {{ event.desc }}    
+                    {{ event.desc }}
                 </p>
             </div>
+
+            {# Hard coded location information for the event #}
             <div class="location">
                 <h3>Locatie</h3>
                 <p>

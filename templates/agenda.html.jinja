@@ -69,7 +69,7 @@
     let currentDate = [day + '-' + (month +1) + '-' + year]
     JSON.stringify(currentDate)
     $.ajax({
-      
+
       url: '/api/v2/almere/events/test',
       type: 'POST',
       data: {
@@ -121,9 +121,11 @@
 <style>
   /* Class for a day with an event */
   .event_day {
-    color: #0030ce !important;
+    padding:1em;
+    line-height:2;
     font-weight: bold;
-    background-color: #b8b8b8;
+    background-color: var(--dark);
+    color:var(--light) !important;
   }
 </style>
 

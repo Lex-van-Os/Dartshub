@@ -10,10 +10,11 @@ Update the DB: flask db upgrade
 
 For help: flask db --help
 
-BELANGRIJK: CHRIS IK HEB JE TABLE EEN BEETJE AANGEPAST ANDERS FUNCTIONEERT HIJ NIET MET DE API
 """
 
 
+# Model for the website admin user.
+# Defined data in this model, is automatically communicated to the database in the form of table data, done through SQL Alchemy
 class AdminUsers(UserMixin, db.Model):
 
     __tablename__ = 'admin_users'
@@ -34,9 +35,10 @@ class AdminUsers(UserMixin, db.Model):
         self.password = password
 
     def __repr__(self):
-
+        # Returning of custom user info string when printing an admin user instance
         return f"User, ({self.first_name}, {self.last_name}, {self.email}, {self.password}) and his username is: {self.user_name}"
 
+    # Function for parsing admin user data to JSON format, for returning to the front-end
     def json(self):
 
         return {
