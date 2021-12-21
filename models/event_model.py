@@ -1,4 +1,5 @@
 # moduls to create the model
+from sqlalchemy.orm import relationship
 from config import db
 from models import location_model
 """
@@ -25,15 +26,7 @@ class Event(db.Model):
     desc = db.Column(db.String(248), unique=False, nullable=True)
     age = db.Column(db.Integer, unique=False, nullable=False)
     locationID = db.Column(db.Integer, db.ForeignKey('location.id'), nullable=False)
-    user = db.relationship('Location', backref=db.backref('events_agenda'), lazy=True)
-
-
-    def __init__(self, name="", date="", time="", desc="", age=""):
-        self.name = name
-        self.date = date
-        self.time = time
-        self.desc = desc
-        self.age = age
+    location = relationship('Location', backref='events')
 
 
     # Function for parsing event data to JSON format, for returning to the front-end
