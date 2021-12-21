@@ -10,21 +10,14 @@
 data from this page, then we can get the information and display the 'details'
 #}
 
-{# Form for creating a new event #}
-
-<form
-  action="#"
-  method="POST"
-  onsubmit="alert('Nieuw Evenement Aangemaakt!'); return false"
-  class="form"
->
   <div class="form-group pb-4">
-    <input type="text" name="event" placeholder="Naam Evenement: " /
+    <input id="event_name" type="text" name="event" placeholder="Naam Evenement: " /
     class="form-control">
   </div>
 
   <div class="form-group pb-4">
     <input
+      id="event_date"
       type="date"
       name="date"
       placeholder="Datum Evenement: "
@@ -44,7 +37,7 @@ data from this page, then we can get the information and display the 'details'
 
   <div class="form-group pb-4">
     <label for="time">Tijd</label>
-    <input type="time" name="time" placeholder="Tijd: " />
+    <input id="event_time" type="time" name="time" placeholder="Tijd: " />
   </div>
 
   <div class="form-group pb-4">
@@ -52,6 +45,16 @@ data from this page, then we can get the information and display the 'details'
       type="text"
       name="event_category"
       placeholder="Event Categorie: "
+      class="form-control"
+    />
+  </div>
+
+  <div class="form-group pb-4">
+    <input
+      id="event_desc"
+      type="text"
+      name="desc"
+      placeholder="Beschrijving: "
       class="form-control"
     />
   </div>
@@ -75,9 +78,41 @@ data from this page, then we can get the information and display the 'details'
   </div>
 
   <div class="form-group pb-4">
-    <input type="submit" value="Opslaan" class="btn btn--dark" />
+    <input id="submit_event" type="submit" value="Opslaan" class="btn btn--dark" />
   </div>
-</form>
+
+<script>
+  function post_succes() {
+    alert("Evenement aangemaakt!");
+    window.location.href = "/";
+  };
+
+  $('#submit_event').click(function() {
+    var name = $("#event_name").val();
+    var date = $("#event_date").val();
+    var time = $("#event_time").val();
+    var desc = $("#event_desc").val();
+    var age = 18
+
+    event_data = {
+      name,
+      date,
+      time,
+      desc,
+      age,
+    };
+
+    console.log(JSON.stringify(event_data))
+
+    $.ajax({
+      type: "POST",
+      url: "/api/v2/almere/events/" + event_name,
+      data: JSON.stringify(event_data),
+      success: post_succes(),
+      dataType: "JSON"
+    });
+  });
+</script>
 
 {# // Code for setting up the form with the right data. #} {#
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

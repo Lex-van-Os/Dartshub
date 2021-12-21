@@ -1,5 +1,7 @@
 :root {
   --red-color: rgb(255, 6, 6);
+  --dark: #1a1a1a;
+  --light: white;
 }
 * {
   box-sizing: border-box;
@@ -159,7 +161,6 @@ body::-webkit-scrollbar {
 }
 
 #content {
-  padding-top: 5%;
 }
 
 .widgets {
@@ -221,7 +222,7 @@ body::-webkit-scrollbar {
 }
 
 .btn--dark {
-  background-color: #1a1a1a;
+  background-color: var(--dark);
   color: white;
 }
 
